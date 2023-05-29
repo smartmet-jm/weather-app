@@ -79,7 +79,8 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
   ).length;
 
   const { units } = Config.get('settings');
-  const { data, excludeDayLength } = Config.get('weather').forecast;
+  const { data, excludeDayLength, excludePolarNightAndMidnightSun } =
+    Config.get('weather').forecast;
   const forecastParams = data.flatMap(({ parameters }) => parameters);
   const regex = new RegExp([...forecastParams].join('|'));
   const activeConstants = constants.filter((constant) =>
@@ -663,34 +664,41 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
                     {t('weatherInfoBottomSheet.sunset')}
                   </Text>
                 </View>
-                <View style={[styles.row, styles.withMarginLeft]}>
-                  <View style={styles.iconWrapper}>
-                    <Icon
-                      width={22}
-                      height={22}
-                      name="polar-night"
-                      style={styles.withMarginRight}
-                      color={colors.hourListText}
-                    />
-                  </View>
-                  <Text style={[styles.text, { color: colors.hourListText }]}>
-                    {t('weatherInfoBottomSheet.polarNight')}
-                  </Text>
-                </View>
-                <View style={[styles.row, styles.withMarginLeft]}>
-                  <View style={styles.iconWrapper}>
-                    <Icon
-                      width={22}
-                      height={22}
-                      name="midnight-sun"
-                      style={styles.withMarginRight}
-                      color={colors.hourListText}
-                    />
-                  </View>
-                  <Text style={[styles.text, { color: colors.hourListText }]}>
-                    {t('weatherInfoBottomSheet.nightlessNight')}
-                  </Text>
-                </View>
+                {(excludePolarNightAndMidnightSun === undefined ||
+                  !excludePolarNightAndMidnightSun) && (
+                  <>
+                    <View style={[styles.row, styles.withMarginLeft]}>
+                      <View style={styles.iconWrapper}>
+                        <Icon
+                          width={22}
+                          height={22}
+                          name="polar-night"
+                          style={styles.withMarginRight}
+                          color={colors.hourListText}
+                        />
+                      </View>
+                      <Text
+                        style={[styles.text, { color: colors.hourListText }]}>
+                        {t('weatherInfoBottomSheet.polarNight')}
+                      </Text>
+                    </View>
+                    <View style={[styles.row, styles.withMarginLeft]}>
+                      <View style={styles.iconWrapper}>
+                        <Icon
+                          width={22}
+                          height={22}
+                          name="midnight-sun"
+                          style={styles.withMarginRight}
+                          color={colors.hourListText}
+                        />
+                      </View>
+                      <Text
+                        style={[styles.text, { color: colors.hourListText }]}>
+                        {t('weatherInfoBottomSheet.nightlessNight')}
+                      </Text>
+                    </View>
+                  </>
+                )}
                 <View style={[styles.row, styles.withMarginLeft]}>
                   <View style={styles.iconWrapper}>
                     <Icon
@@ -711,6 +719,7 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
                 </View>
               </>
             )}
+
             <View
               style={[styles.separator, { backgroundColor: colors.border }]}
             />
