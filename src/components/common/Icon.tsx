@@ -54,6 +54,8 @@ import Snow from '@assets/images/icons/snow.svg';
 import SocialInstagramDark from '@assets/images/icons/social-instagram-dark.svg';
 import SocialTwitterDark from '@assets/images/icons/social-twitter-dark.svg';
 import SocialYoutubeDark from '@assets/images/icons/social-youtube-dark.svg';
+import SocialFacebookDark from '@assets/images/icons/social-facebook-dark.svg';
+import SocialFacebookLight from '@assets/images/icons/social-facebook-light.svg';
 import SocialInstagramLight from '@assets/images/icons/social-instagram-light.svg';
 import SocialTwitterLight from '@assets/images/icons/social-twitter-light.svg';
 import SocialYoutubeLight from '@assets/images/icons/social-youtube-light.svg';
@@ -320,6 +322,10 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <SocialTwitterDark {...(props as SvgProps)} />;
     case 'social-youtube-dark':
       return <SocialYoutubeDark {...(props as SvgProps)} />;
+    case 'social-facebook-dark':
+      return <SocialFacebookDark {...(props as SvgProps)} />;
+    case 'social-facebook-light':
+      return <SocialFacebookLight {...(props as SvgProps)} />;
     case 'social-instagram-light':
       return <SocialInstagramLight {...(props as SvgProps)} />;
     case 'social-twitter-light':
