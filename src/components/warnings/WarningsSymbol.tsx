@@ -61,7 +61,10 @@ const WarningSymbol: React.FC<WarningSymbolProps> = ({
     'Landslide Advisory': 'Landslide Advisory',
     'Landslide Warning': 'Landslide Warning',
     'Landslide Watch': 'Landslide Watch',
-    'Large Wave Warning for Small Craft': 'Large Wave Warning for Small Craft',
+    'Large Wave Warning for Small Craft Severe':
+      'Large Wave Warning for Small Craft Severe',
+    'Large Wave Warning for Small Craft Extreme':
+      'Large Wave Warning for Small Craft Extreme',
     'Poor Visibility': 'Poor Visibility',
     'Rainfall Outlook Drought': 'Rainfall Outlook Drought',
     'Rainfall Outlook Heavy Rain': 'Rainfall Outlook Heavy Rain',
@@ -72,8 +75,8 @@ const WarningSymbol: React.FC<WarningSymbolProps> = ({
     'Strong Wind and Large Waves Advisory':
       'Strong Wind and Large Waves Advisory',
     'Strong Wind Advisory': 'Strong Wind Advisory',
-    'Strong Wind Warning': 'Strong Wind Warning',
-    'Strong Wind Watch': 'Strong Wind Watch',
+    'Strong Wind Warning Severe': 'Strong Wind Warning Severe',
+    'Strong Wind Warning Extreme': 'Strong Wind Warning Extreme',
     'Temperature Outlook': 'Temperature Outlook',
     'Thunderstorm Advisory': 'Thunderstorm Advisory',
     'Thunderstorm Watch': 'Thunderstorm Watch',
