@@ -95,6 +95,8 @@ const ForecastByHourList: React.FC<ForecastByHourListProps> = ({
     const step = data[adjustedStepIndex];
     const sunrise = moment(`${step.sunrise}Z`);
     const sunset = moment(`${step.sunset}Z`);
+    const dayHours = Math.floor(step.dayLength / 60);
+    const dayMinutes = step.dayLength % 60;
 
     const { excludeDayDuration, excludePolarNightAndMidnightSun } =
       Config.get('weather').forecast;
