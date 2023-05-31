@@ -185,9 +185,11 @@ export interface ConfigType {
       defaultParameters: DisplayParameters[];
       excludeDayLength?: boolean;
       excludePolarNightAndMidnightSun?: boolean;
+      excludeDayDuration?: boolean;
       infoBottomSheet?: {
         showAllSymbols?: boolean;
       };
+      excludePolarNightAndMidnightSun?: boolean;
     };
     observation: ObservationEnabled | ObservationDisabled;
     useCardinalsForWindDirection?: boolean;

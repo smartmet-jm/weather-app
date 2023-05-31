@@ -95,10 +95,23 @@ const ForecastByHourList: React.FC<ForecastByHourListProps> = ({
     const step = data[adjustedStepIndex];
     const sunrise = moment(`${step.sunrise}Z`);
     const sunset = moment(`${step.sunset}Z`);
+    const dayHours = Math.floor(step.dayLength / 60);
+    const dayMinutes = step.dayLength % 60;
 
-    const isPolarNight = !step.sunriseToday && sunset.isBefore(sunrise);
+    const { excludeDayDuration, excludePolarNightAndMidnightSun } =
+      Config.get('weather').forecast;
 
-    const isMidnightSun = !step.sunsetToday && sunrise.isBefore(sunset);
+    const isPolarNight =
+      (excludePolarNightAndMidnightSun === undefined ||
+        !excludePolarNightAndMidnightSun) &&
+      !step.sunriseToday &&
+      sunset.isBefore(sunrise);
+
+    const isMidnightSun =
+      (excludePolarNightAndMidnightSun === undefined ||
+        !excludePolarNightAndMidnightSun) &&
+      !step.sunsetToday &&
+      sunrise.isBefore(sunset);
 
     const dateFormat =
       clockType === 12
@@ -240,7 +253,13 @@ const ForecastByHourList: React.FC<ForecastByHourListProps> = ({
                 styles.maxWidth,
                 styles.justifyContentCenter,
               ]}>
-              <View style={[styles.row, styles.withMarginRight5]} accessible>
+              <View
+                style={[
+                  styles.row,
+                  styles.alignCenter,
+                  styles.withMarginRight20,
+                ]}
+                accessible>
                 <Icon
                   width={14}
                   height={14}
@@ -286,6 +305,39 @@ const ForecastByHourList: React.FC<ForecastByHourListProps> = ({
                   {sunset.format(timeFormat)}
                 </Text>
               </View>
+              {(excludeDayDuration === undefined || !excludeDayDuration) && (
+                <>
+                  <View
+                    style={[
+                      styles.row,
+                      styles.alignCenter,
+                      styles.withMarginLeft20,
+                    ]}
+                    accessible>
+                    <Icon
+                      width={24}
+                      height={24}
+                      name="time"
+                      style={[
+                        styles.alignCenter,
+                        styles.withMarginRight,
+                        { color: colors.hourListText },
+                      ]}
+                    />
+                    <Text
+                      accessibilityLabel={`${t('dayLength')} ${dayHours} ${t(
+                        'hours'
+                      )} ${dayMinutes} ${t('minutes')}`}
+                      style={[
+                        styles.panelText,
+                        styles.bold,
+                        { color: colors.hourListText },
+                      ]}>
+                      {`${dayHours} h ${dayMinutes} min`}
+                    </Text>
+                  </View>
+                </>
+              )}
             </View>
           )}
         </View>
@@ -394,11 +446,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Roboto-Medium',
   },
+  withMarginRight20: {
+    marginRight: 20,
+  },
+  withMarginLeft20: {
+    marginLeft: 20,
+  },
   withMarginRight: {
     marginRight: 6,
-  },
-  withMarginRight5: {
-    marginRight: 5,
   },
   forecastHeader: {
     height: 52,
