@@ -47,7 +47,7 @@
   <defs
      id="defs4741">
     <style
-       id="style4739">.cls-1{fill:red;}.cls-2{fill:#20bce5;}.cls-3{mix-blend-mode:overlay;}.cls-4{isolation:isolate;}</style>
+       id="style4739">.cls-1{fill:red;}.cls-2{fill:#20bce5;}.cls-3{mix-blend-mode:overlay;}.cls-4{isolation:isolate; fill: #000}</style>
   </defs>
   <g
      class="cls-4"
