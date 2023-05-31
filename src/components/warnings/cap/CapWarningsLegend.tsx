@@ -20,6 +20,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { knownWarningTypes } from '@store/warnings/constants';
 import { useTranslation } from 'react-i18next';
+import { Severity, WarningType } from '@store/warnings/types';
 import CapSeverityBar from './CapSeverityBar';
 import TypeColorRow from '../TypeColorRow';
 import WarningSymbol from '../WarningsSymbol';
@@ -34,6 +35,35 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
     CAP_WARNING_ORANGE,
     CAP_WARNING_RED,
   ];
+
+  const renderWarningExplanation = (warningType: WarningType) => {
+    const severities: Severity[] = ['Severe'];
+    if (
+      ['Strong Wind Warning', 'Large Wave Warning for Small Craft'].includes(
+        warningType
+      )
+    ) {
+      severities.push('Extreme');
+    }
+    return severities.map((severity) => (
+      <View style={styles.symbolRow} key={`${warningType}-${severity}`}>
+        <View>
+          <WarningSymbol severity={severity} type={warningType} size={32} />
+        </View>
+        <View>
+          <Text
+            style={[
+              styles.severityBarLegendText,
+              { color: colors.hourListText },
+            ]}>
+            {t(`warnings:types:${warningType}`, warningType)}{' '}
+            {severities.length > 1 ? `(${severity})` : ''}
+          </Text>
+        </View>
+      </View>
+    ));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.closeButtonContainer}>
@@ -126,26 +156,9 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
               {t('warnings:capInfo:warningExplanations')}
             </Text>
             <View>
-              {knownWarningTypes.map((warningType) => (
-                <View style={styles.symbolRow} key={warningType}>
-                  <View>
-                    <WarningSymbol
-                      severity="Severe" // just some severity - does not affect shown symbol
-                      type={warningType}
-                      size={32}
-                    />
-                  </View>
-                  <View>
-                    <Text
-                      style={[
-                        styles.severityBarLegendText,
-                        { color: colors.hourListText },
-                      ]}>
-                      {t(`warnings:types:${warningType}`, warningType)}
-                    </Text>
-                  </View>
-                </View>
-              ))}
+              {knownWarningTypes.map((warningType) =>
+                renderWarningExplanation(warningType)
+              )}
             </View>
           </View>
           <View style={[styles.contentContainer, styles.borderBottom]}>
