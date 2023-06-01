@@ -39,7 +39,8 @@ const TermsAndConditionsScreen: React.FC = () => {
   const accessibility = '';
   const accessibilitySv = '';
 
-  const legal = '';
+  const legal =
+    'https://japarliament.gov.jm/attachments/article/339/The%20Data%20Protection%20Act,%202020.pdf ';
   const legalSv = '';
 
   return (
