@@ -512,9 +512,10 @@
     },
     "severities": {
       "0": "No danger",
-      "1": "Potentially dangerous",
-      "2": "Dangerous",
-      "3": "Very dangerous"
+      "1": "Minor",
+      "2": "Potentially dangerous",
+      "3": "Dangerous",
+      "4": "Very dangerous"
     },
     "info": {
       "dailyTitle": "Daily legends",
@@ -528,8 +529,7 @@
       "example": "Example",
       "example1Text": "Potentially dangerous weather in the latter half of the day",
       "example2Text": "The weather develops from potentially dangerous to very dangerous as the day progresses",
-      "warningExplanationsOnLand": "Explanations of warnings for land areas",
-      "warningExplanationsAtSea": "Explanations of warnings for sea areas",
+      "warningExplanations": "Explanations of warnings",
       "warningColorsExplanation": "Explanations of warning colors",
       "timezone": "Time zone",
       "timezoneText": "All times on the application are displayed according to the selected time zone."

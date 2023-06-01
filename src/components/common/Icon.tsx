@@ -180,8 +180,8 @@ import HurricaneWatch from '@assets/images/icons/warnings/Hurricane Watch.svg';
 import LandslideAdvisory from '@assets/images/icons/warnings/Landslide Advisory.svg';
 import LandslideWarning from '@assets/images/icons/warnings/Landslide Warning.svg';
 import LandslideWatch from '@assets/images/icons/warnings/Landslide Watch.svg';
-import LargeWaveWarningForSmallCraft from '@assets/images/icons/warnings/Large Wave Warning for Small Craft.svg'; // event code: Large Wave Warning for Small Craft, 2
-// import LargeWaveWarningForSmallCraft2 from '@assets/images/icons/warnings/Large Wave Warning for Small Craft 2.svg'; // event code: Large Wave Warning for Small Craft, 3...15
+import LargeWaveWarningForSmallCraftSevere from '@assets/images/icons/warnings/Large Wave Warning for Small Craft Severe.svg'; // event code: Large Wave Warning for Small Craft, 2
+import LargeWaveWarningForSmallCraftExtreme from '@assets/images/icons/warnings/Large Wave Warning for Small Craft Extreme.svg'; // event code: Large Wave Warning for Small Craft, 3...15
 import PoorVisibility from '@assets/images/icons/warnings/Poor Visibility.svg';
 import RainfallOutlookDrought from '@assets/images/icons/warnings/Rainfall Outlook Drought.svg'; // event code Rainfall Outlook, Below-normal
 import RainfallOutlookHeavyRain from '@assets/images/icons/warnings/Rainfall Outlook Heavy Rain.svg'; // event code Rainfall Outlook, Above-normal
@@ -189,11 +189,10 @@ import SevereWeatherAlert from '@assets/images/icons/warnings/Severe Weather Ale
 import StormSurgeAdvisory from '@assets/images/icons/warnings/Storm Surge Advisory.svg';
 import StormSurgeWarning from '@assets/images/icons/warnings/Storm Surge Warning.svg';
 import StrongWindAdvisory from '@assets/images/icons/warnings/Strong Wind Advisory.svg';
-import StrongWindWarning from '@assets/images/icons/warnings/Strong Wind Warning.svg'; // event code: Strong Wind Warning, 64..117 - should be watch?
-// import StrongWindWarning from '@assets/images/icons/warnings/Strong Wind Warning.svg'; // event code: Strong Wind Warning, 118...252
-import StrongWindAndLargeWaveWarning from '@assets/images/icons/warnings/Strong Wind and Large Wave Warning.svg'; // Wave or Waves?
+import StrongWindWarningSevere from '@assets/images/icons/warnings/Strong Wind Warning Severe.svg'; // event code: Strong Wind Warning, 64..117
+import StrongWindWarningExtreme from '@assets/images/icons/warnings/Strong Wind Warning Extreme.svg'; // event code: Strong Wind Warning, 118...252
+import StrongWindAndLargeWaveWarning from '@assets/images/icons/warnings/Strong Wind and Large Wave Warning.svg';
 import StrongWindAndLargeWavesAdvisory from '@assets/images/icons/warnings/Strong Wind and Large Waves Advisory.svg'; // event code: Strong Wind and Large Waves Advisory, 20-25kt
-// import StrongWindAndLargeWavesAdvisory from '@assets/images/icons/warnings/Strong Wind and Large Waves Advisory.svg'; // event code: Strong Wind and Large Waves Advisory, 25-34kt
 import TemperatureOutlook from '@assets/images/icons/warnings/Temperature Outlook.svg';
 import ThunderstormAdvisory from '@assets/images/icons/warnings/Thunderstorm Advisory.svg';
 import ThunderstormWatch from '@assets/images/icons/warnings/Thunderstorm Watch.svg';
@@ -562,8 +561,10 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <LandslideWarning {...(props as SvgProps)} />;
     case 'Landslide Watch':
       return <LandslideWatch {...(props as SvgProps)} />;
-    case 'Large Wave Warning for Small Craft':
-      return <LargeWaveWarningForSmallCraft {...(props as SvgProps)} />;
+    case 'Large Wave Warning for Small Craft Severe':
+      return <LargeWaveWarningForSmallCraftSevere {...(props as SvgProps)} />;
+    case 'Large Wave Warning for Small Craft Extreme':
+      return <LargeWaveWarningForSmallCraftExtreme {...(props as SvgProps)} />;
     case 'Poor Visibility':
       return <PoorVisibility {...(props as SvgProps)} />;
     case 'Rainfall Outlook Drought':
@@ -582,8 +583,10 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <StrongWindAndLargeWaveWarning {...(props as SvgProps)} />;
     case 'Strong Wind and Large Waves Advisory':
       return <StrongWindAndLargeWavesAdvisory {...(props as SvgProps)} />;
-    case 'Strong Wind Warning':
-      return <StrongWindWarning {...(props as SvgProps)} />;
+    case 'Strong Wind Warning Severe':
+      return <StrongWindWarningSevere {...(props as SvgProps)} />;
+    case 'Strong Wind Warning Extreme':
+      return <StrongWindWarningExtreme {...(props as SvgProps)} />;
     case 'Temperature Outlook':
       return <TemperatureOutlook {...(props as SvgProps)} />;
     case 'Thunderstorm Advisory':

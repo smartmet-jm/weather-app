@@ -73,7 +73,6 @@ const WarningSymbol: React.FC<WarningSymbolProps> = ({
       'Strong Wind and Large Waves Advisory',
     'Strong Wind Advisory': 'Strong Wind Advisory',
     'Strong Wind Warning': 'Strong Wind Warning',
-    'Strong Wind Watch': 'Strong Wind Watch',
     'Temperature Outlook': 'Temperature Outlook',
     'Thunderstorm Advisory': 'Thunderstorm Advisory',
     'Thunderstorm Watch': 'Thunderstorm Watch',
@@ -97,10 +96,18 @@ const WarningSymbol: React.FC<WarningSymbolProps> = ({
     'Very Poor Visibility': 'Very Poor Visibility',
   };
 
+  const severityMap: { [key in WarningType]?: Severity[] } = {
+    'Strong Wind Warning': ['Severe', 'Extreme'],
+    'Large Wave Warning for Small Craft': ['Severe', 'Extreme'],
+  };
+
   let name;
   const typeName = typeMap[type];
+
   if (typeName) {
     name = typeName;
+    if (severityMap[type] && severityMap[type]?.includes(severity))
+      name += ` ${severity}`;
   } else {
     name = `warnings-generic-${colorMap[severity]}`;
   }

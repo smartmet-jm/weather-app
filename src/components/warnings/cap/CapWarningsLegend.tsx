@@ -15,20 +15,55 @@ import {
   CAP_WARNING_YELLOW,
   CAP_WARNING_ORANGE,
   CAP_WARNING_RED,
+  CAP_WARNING_GREEN,
 } from '@utils/colors';
 import { useTheme } from '@react-navigation/native';
-import { t } from 'i18next';
+import { knownWarningTypes } from '@store/warnings/constants';
+import { useTranslation } from 'react-i18next';
+import { Severity, WarningType } from '@store/warnings/types';
 import CapSeverityBar from './CapSeverityBar';
 import TypeColorRow from '../TypeColorRow';
+import WarningSymbol from '../WarningsSymbol';
 
 const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
+  const { t } = useTranslation();
   const { colors } = useTheme() as CustomTheme;
   const severityColors = [
     CAP_WARNING_NEUTRAL,
+    CAP_WARNING_GREEN,
     CAP_WARNING_YELLOW,
     CAP_WARNING_ORANGE,
     CAP_WARNING_RED,
   ];
+
+  const renderWarningExplanation = (warningType: WarningType) => {
+    const severities: Severity[] = ['Severe'];
+    if (
+      ['Strong Wind Warning', 'Large Wave Warning for Small Craft'].includes(
+        warningType
+      )
+    ) {
+      severities.push('Extreme');
+    }
+    return severities.map((severity) => (
+      <View style={styles.symbolRow} key={`${warningType}-${severity}`}>
+        <View>
+          <WarningSymbol severity={severity} type={warningType} size={32} />
+        </View>
+        <View>
+          <Text
+            style={[
+              styles.severityBarLegendText,
+              { color: colors.hourListText },
+            ]}>
+            {t(`warnings:types:${warningType}`, warningType)}{' '}
+            {severities.length > 1 ? `(${severity})` : ''}
+          </Text>
+        </View>
+      </View>
+    ));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.closeButtonContainer}>
@@ -80,13 +115,23 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
                 {t('warnings:severities:3')}
               </Text>
             </View>
+            <View style={styles.legendRow}>
+              <CapSeverityBar severities={[4, 4, 4, 4]} />
+              <Text
+                style={[
+                  styles.severityBarLegendText,
+                  { color: colors.hourListText },
+                ]}>
+                {t('warnings:severities:4')}
+              </Text>
+            </View>
             <View>
               <Text style={{ color: colors.hourListText }}>
                 {t('warnings:capInfo:example')}
               </Text>
             </View>
             <View style={styles.legendRow}>
-              <CapSeverityBar severities={[0, 0, 1, 1]} />
+              <CapSeverityBar severities={[0, 0, 2, 2]} />
               <Text
                 style={[
                   styles.severityBarLegendText,
@@ -96,7 +141,7 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
               </Text>
             </View>
             <View style={styles.legendRow}>
-              <CapSeverityBar severities={[1, 1, 2, 3]} />
+              <CapSeverityBar severities={[2, 2, 3, 4]} />
               <Text
                 style={[
                   styles.severityBarLegendText,
@@ -108,19 +153,13 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
           </View>
           <View style={styles.contentContainer}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
-              {t('warnings:capInfo:warningExplanationsOnLand')}
+              {t('warnings:capInfo:warningExplanations')}
             </Text>
-            <Text style={{ color: colors.hourListText }}>
-              // TODO: add warning symbols{' '}
-            </Text>
-          </View>
-          <View style={styles.contentContainer}>
-            <Text style={[styles.headingText, { color: colors.primaryText }]}>
-              {t('warnings:capInfo:warningExplanationsAtSea')}
-            </Text>
-            <Text style={{ color: colors.hourListText }}>
-              // TODO: add warning symbols
-            </Text>
+            <View>
+              {knownWarningTypes.map((warningType) =>
+                renderWarningExplanation(warningType)
+              )}
+            </View>
           </View>
           <View style={[styles.contentContainer, styles.borderBottom]}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
@@ -137,6 +176,9 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
             </View>
             <View>
               <TypeColorRow severity={3} severityColors={severityColors} />
+            </View>
+            <View>
+              <TypeColorRow severity={4} severityColors={severityColors} />
             </View>
           </View>
           <View style={[styles.contentContainer]}>
@@ -186,6 +228,11 @@ const styles = StyleSheet.create({
   severityBarLegendText: {
     marginLeft: 14,
     flexWrap: 'wrap',
+  },
+  symbolRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 12,
   },
 });
 

@@ -48,7 +48,6 @@ export const knownWarningTypes = [
   'Strong Wind and Large Waves Advisory',
   'Strong Wind and Large Wave Warning',
   'Strong Wind Advisory',
-  'Strong Wind Watch',
   'Strong Wind Warning',
   'Temperature Outlook',
   'Thunderstorm Advisory',
