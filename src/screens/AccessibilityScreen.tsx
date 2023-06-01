@@ -34,13 +34,13 @@ const TermsAndConditionsScreen: React.FC = () => {
     }
   });
 
-  const fmiMailToUrl = `mailto:kirjaamo@fmi.fi?subject=Ilmatieteen laitoksen sää saavutettavuus [versio: ${packageJSON.version}]`;
+  const accessibilityMailToUrl = `mailto:director1@metservice.gov.jm?subject=Meteorogical Service Jamaica App accessibility feedback [versio: ${packageJSON.version}]`;
 
-  const accessibility = 'https://www.saavutettavuusvaatimukset.fi';
-  const accessibilitySv = 'https://www.tillgänglighetskrav.fi';
+  const accessibility = '';
+  const accessibilitySv = '';
 
-  const legal = 'https://www.finlex.fi/fi/laki/alkup/2019/20190306';
-  const legalSv = 'https://www.finlex.fi/sv/laki/ajantasa/2019/20190306';
+  const legal = '';
+  const legalSv = '';
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -108,7 +108,7 @@ const TermsAndConditionsScreen: React.FC = () => {
             <AccessibleTouchableOpacity
               accessibilityRole="link"
               accessibilityHint={t('feedback:moveToHint')}
-              onPress={() => Linking.openURL(fmiMailToUrl)}>
+              onPress={() => Linking.openURL(accessibilityMailToUrl)}>
               <View
                 style={[styles.link, { borderBottomColor: colors.primary }]}>
                 <Text
