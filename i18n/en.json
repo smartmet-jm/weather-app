@@ -529,10 +529,33 @@
       "example": "Example",
       "example1Text": "Potentially dangerous weather in the latter half of the day",
       "example2Text": "The weather develops from potentially dangerous to very dangerous as the day progresses",
-      "warningExplanations": "Explanations of warnings",
+      "warningExplanations": "Warning explanations",
       "warningColorsExplanation": "Explanations of warning colors",
       "timezone": "Time zone",
-      "timezoneText": "All times on the application are displayed according to the selected time zone."
+      "timezoneText": "All times on the application are displayed according to the selected time zone.",
+      "warnings": {
+        "tropicalStorm" : "Tropical storm",
+        "hurricane": "Hurricane",
+        "heavyRainfall": "Heavy Rainfall (75-100 mm in 24 hours",
+        "veryHeavyRainfall": "Very heavy Rainfall (more than 100 mm in 24 hours",
+        "thunderstorms": "Thunderstorms",
+        "landslides": "Landslides",
+        "flooding": "Flooding",
+        "flashFloods": "Flash floods",
+        "largeWaves": "Large waves (up to 2.5 meters)",
+        "veryLargeWaves": "Very large waves (more than 2.5 meters)",
+        "strongWind": "Strong wind (29-46 km/h)",
+        "veryStrongWind": "Very strong wind (47-87 km/h)",
+        "stormForceWind": "Storm force wind (94-117 km/h)",
+        "stormSurge": "Storm surge and coastal flooding",
+        "poorVisibility": "Poor visibility",
+        "coolTemperatures": "Cool temperatures",
+        "veryHotTemperatures": "Very hot temperatures, heat warning",
+        "highHumidity": "High humidity (more than 90%)",
+        "bushFireSevere": "Severe (amber) bush fire risk",
+        "bushFireExtreme": "Severe (red) bush fire risk",
+        "drySpellDrought": "Dry spell or drought"
+      }
     }
   },
   "setUp": {
