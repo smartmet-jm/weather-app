@@ -18,9 +18,7 @@ import {
   CAP_WARNING_GREEN,
 } from '@utils/colors';
 import { useTheme } from '@react-navigation/native';
-import { knownWarningTypes } from '@store/warnings/constants';
 import { useTranslation } from 'react-i18next';
-import { Severity, WarningType } from '@store/warnings/types';
 import CapSeverityBar from './CapSeverityBar';
 import TypeColorRow from '../TypeColorRow';
 import WarningSymbol from '../WarningsSymbol';
@@ -36,34 +34,6 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
     CAP_WARNING_RED,
   ];
 
-  const renderWarningExplanation = (warningType: WarningType) => {
-    const severities: Severity[] = ['Severe'];
-    if (
-      ['Strong Wind Warning', 'Large Wave Warning for Small Craft'].includes(
-        warningType
-      )
-    ) {
-      severities.push('Extreme');
-    }
-    return severities.map((severity) => (
-      <View style={styles.symbolRow} key={`${warningType}-${severity}`}>
-        <View>
-          <WarningSymbol severity={severity} type={warningType} size={32} />
-        </View>
-        <View>
-          <Text
-            style={[
-              styles.severityBarLegendText,
-              { color: colors.hourListText },
-            ]}>
-            {t(`warnings:types:${warningType}`, warningType)}{' '}
-            {severities.length > 1 ? `(${severity})` : ''}
-          </Text>
-        </View>
-      </View>
-    ));
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.closeButtonContainer}>
@@ -75,119 +45,458 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
               {t('warnings:capInfo:dailyTitle')}
             </Text>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[0, 0, 0, 0]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:severities:0')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[1, 1, 1, 1]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:severities:1')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[2, 2, 2, 2]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:severities:2')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[3, 3, 3, 3]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:severities:3')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[4, 4, 4, 4]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:severities:4')}
-              </Text>
-            </View>
-            <View>
-              <Text style={{ color: colors.hourListText }}>
-                {t('warnings:capInfo:example')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[0, 0, 2, 2]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:capInfo:example1Text')}
-              </Text>
-            </View>
-            <View style={styles.legendRow}>
-              <CapSeverityBar severities={[2, 2, 3, 4]} />
-              <Text
-                style={[
-                  styles.severityBarLegendText,
-                  { color: colors.hourListText },
-                ]}>
-                {t('warnings:capInfo:example2Text')}
-              </Text>
+            <View style={[styles.contentContainer]}>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[0, 0, 0, 0]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:severities:0')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[1, 1, 1, 1]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:severities:1')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[2, 2, 2, 2]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:severities:2')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[3, 3, 3, 3]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:severities:3')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[4, 4, 4, 4]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:severities:4')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <Text style={{ color: colors.hourListText }}>
+                  {t('warnings:capInfo:example')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[0, 0, 2, 2]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:example1Text')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <CapSeverityBar severities={[2, 2, 3, 4]} />
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:example2Text')}
+                </Text>
+              </View>
             </View>
           </View>
-          <View style={styles.contentContainer}>
+          <View style={[styles.contentContainer, styles.borderBottom]}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
               {t('warnings:capInfo:warningExplanations')}
             </Text>
-            <View>
-              {knownWarningTypes.map((warningType) =>
-                renderWarningExplanation(warningType)
-              )}
+            <View style={[styles.contentContainer]}>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Tropical Storm Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.tropicalStorm')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Hurricane Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.hurricane')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Heavy Rainfall Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.heavyRainfall')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Heavy Rainfall Warning"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.veryHeavyRainfall')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Thunderstorm Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.thunderstorms')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Landslide Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.landslides')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Flood Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.flooding')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Flash Flood Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.flashFloods')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Severe"
+                    type="Large Wave Warning for Small Craft"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.largeWaves')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Extreme"
+                    type="Large Wave Warning for Small Craft"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.veryLargeWaves')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Strong Wind Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.strongWind')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Severe"
+                    type="Strong Wind Warning"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.veryStrongWind')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Extreme"
+                    type="Strong Wind Warning"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.stormForceWind')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Storm Surge Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.stormSurge')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Poor Visibility"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.poorVisibility')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Falling Temperatures Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.coolTemperatures')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Heat Watch"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.veryHotTemperatures')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="High Humidity Advisory"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.highHumidity')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Bush Fire Watch"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.bushFireSevere')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Bush Fire Warning"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.bushFireExtreme')}
+                </Text>
+              </View>
+              <View style={styles.legendRow}>
+                <View>
+                  <WarningSymbol
+                    severity="Moderate"
+                    type="Drought Alert"
+                    size={32}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:warnings.drySpellDrought')}
+                </Text>
+              </View>
             </View>
           </View>
           <View style={[styles.contentContainer, styles.borderBottom]}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
               {t('warnings:capInfo:warningColorsExplanation')}
             </Text>
-            <View>
-              <TypeColorRow severity={0} severityColors={severityColors} />
-            </View>
-            <View>
-              <TypeColorRow severity={1} severityColors={severityColors} />
-            </View>
-            <View>
-              <TypeColorRow severity={2} severityColors={severityColors} />
-            </View>
-            <View>
-              <TypeColorRow severity={3} severityColors={severityColors} />
-            </View>
-            <View>
-              <TypeColorRow severity={4} severityColors={severityColors} />
+            <View style={[styles.contentContainer]}>
+              <View style={[styles.legendRow]}>
+                <TypeColorRow severity={0} severityColors={severityColors} />
+              </View>
+              <View>
+                <TypeColorRow severity={1} severityColors={severityColors} />
+              </View>
+              <View>
+                <TypeColorRow severity={2} severityColors={severityColors} />
+              </View>
+              <View>
+                <TypeColorRow severity={3} severityColors={severityColors} />
+              </View>
+              <View>
+                <TypeColorRow severity={4} severityColors={severityColors} />
+              </View>
             </View>
           </View>
-          <View style={[styles.contentContainer]}>
+          <View style={[styles.contentContainer, styles.borderBottom]}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
               {t('warnings:capInfo:timezone')}
             </Text>
-            <Text style={{ color: colors.hourListText }}>
-              {t('warnings:capInfo:timezoneText')}
-            </Text>
+            <View style={[styles.contentContainer]}>
+              <Text style={{ color: colors.hourListText }}>
+                {t('warnings:capInfo:timezoneText')}
+              </Text>
+            </View>
           </View>
         </TouchableOpacity>
       </ScrollView>
@@ -228,11 +537,6 @@ const styles = StyleSheet.create({
   severityBarLegendText: {
     marginLeft: 14,
     flexWrap: 'wrap',
-  },
-  symbolRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom: 12,
   },
 });
 

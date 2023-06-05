@@ -40,6 +40,7 @@ import Icon from '@components/common/Icon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import HeaderButton from '@components/common/HeaderButton';
 import CommonHeaderTitle from '@components/common/CommonHeaderTitle';
+/* import HeaderIcon from '@components/common/HeaderIcon'; */
 
 import { State } from '@store/types';
 import { selectTheme } from '@store/settings/selectors';
