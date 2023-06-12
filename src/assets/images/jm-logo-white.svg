@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1000"
+   height="150"
+   viewBox="0 0 264.58333 39.687499"
+   version="1.1"
+   id="svg4278"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="JM-logo-white.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4280"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.44631734"
+     inkscape:cx="491.80254"
+     inkscape:cy="208.37192"
+     inkscape:window-width="1343"
+     inkscape:window-height="1205"
+     inkscape:window-x="4245"
+     inkscape:window-y="70"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs4275" />
+  <g
+     inkscape:label="Taso 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g2752"
+       transform="matrix(0.26458333,0,0,0.26458333,-149.95886,-55.498988)">
+      <path
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 619.76047,353.44312 100.1497,-0.8982 c 50.74851,-4.94012 45.35929,-84.88026 -12.12574,-72.30541 -8.53294,-40.86826 -64.67066,-45.35927 -77.24551,-0.89819 -59.28144,-3.14371 -54.79043,69.61078 -10.77845,74.1018 z"
+         id="path364"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:1.10982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 598.2894,283.04121 c 8.17122,-10.06767 28.79441,-9.3012 28.79441,-9.3012 6.78847,-21.35146 20.58334,-25.7441 20.58334,-25.7441 -29.20448,-24.99045 -63.08243,3.47931 -49.37775,35.0453 z"
+         id="path1044"
+         sodipodi:nodetypes="cccc" />
+      <rect
+         style="fill:#ffffff;stroke:#ffffff"
+         id="rect1120"
+         width="16.036928"
+         height="6.1924772"
+         x="573.64209"
+         y="264.90192" />
+      <rect
+         style="fill:#ffffff;stroke:#ffffff"
+         id="rect1120-2"
+         width="16.036928"
+         height="6.1924772"
+         x="578.79443"
+         y="-255.45715"
+         transform="rotate(44.918805)" />
+      <rect
+         style="fill:#ffffff;stroke:#ffffff"
+         id="rect1120-6"
+         width="16.036928"
+         height="6.1924772"
+         x="237.35428"
+         y="648.98535"
+         transform="rotate(-49.703496)" />
+      <rect
+         style="fill:#ffffff;stroke:#ffffff"
+         id="rect1120-9"
+         width="16.036928"
+         height="6.1924772"
+         x="-232.92021"
+         y="620.09216"
+         transform="rotate(-90.062998)" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.7px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="59.689438"
+       y="24.38471"
+       id="text1224"><tspan
+         sodipodi:role="line"
+         id="tspan1222"
+         x="59.689438"
+         y="24.38471"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;stroke-width:0.264583">Meteorological Service of Jamaica</tspan></text>
+  </g>
+</svg>
