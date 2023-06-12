@@ -40,9 +40,11 @@ import Play from '@assets/images/icons/play.svg';
 import Plus from '@assets/images/icons/plus.svg';
 import PolarNight from '@assets/images/icons/polar-night.svg';
 import Precipitation from '@assets/images/icons/precipitation.svg';
-import ProviderLogoEn from '@assets/images/icons/provider-logo-en.svg';
-import ProviderLogoFi from '@assets/images/icons/provider-logo-fi.svg';
-import ProviderLogoSv from '@assets/images/icons/provider-logo-sv.svg';
+/* eslint-disable import/no-duplicates */
+import ProviderLogoEn from '@assets/images/jm-logo-white.svg';
+import ProviderLogoFi from '@assets/images/jm-logo-white.svg';
+import ProviderLogoSv from '@assets/images/jm-logo-white.svg';
+/* eslint-enable import/no-duplicates */
 import RadioButtonOff from '@assets/images/icons/radio-button-off.svg';
 import RadioButtonOn from '@assets/images/icons/radio-button-on.svg';
 import RainDark from '@assets/images/icons/rain-dark.svg';
