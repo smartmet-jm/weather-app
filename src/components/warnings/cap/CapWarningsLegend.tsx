@@ -57,16 +57,6 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
                 </Text>
               </View>
               <View style={styles.legendRow}>
-                <CapSeverityBar severities={[1, 1, 1, 1]} />
-                <Text
-                  style={[
-                    styles.severityBarLegendText,
-                    { color: colors.hourListText },
-                  ]}>
-                  {t('warnings:severities:1')}
-                </Text>
-              </View>
-              <View style={styles.legendRow}>
                 <CapSeverityBar severities={[2, 2, 2, 2]} />
                 <Text
                   style={[
@@ -471,11 +461,8 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
               {t('warnings:capInfo:warningColorsExplanation')}
             </Text>
             <View style={[styles.contentContainer]}>
-              <View style={[styles.legendRow]}>
-                <TypeColorRow severity={0} severityColors={severityColors} />
-              </View>
               <View>
-                <TypeColorRow severity={1} severityColors={severityColors} />
+                <TypeColorRow severity={0} severityColors={severityColors} />
               </View>
               <View>
                 <TypeColorRow severity={2} severityColors={severityColors} />
