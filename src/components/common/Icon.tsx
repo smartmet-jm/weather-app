@@ -41,9 +41,9 @@ import Plus from '@assets/images/icons/plus.svg';
 import PolarNight from '@assets/images/icons/polar-night.svg';
 import Precipitation from '@assets/images/icons/precipitation.svg';
 /* eslint-disable import/no-duplicates */
-import ProviderLogoEn from '@assets/images/jm-logo-white.svg';
-import ProviderLogoFi from '@assets/images/jm-logo-white.svg';
-import ProviderLogoSv from '@assets/images/jm-logo-white.svg';
+import ProviderLogoEn from '@assets/images/jm-logo-white2.svg';
+import ProviderLogoFi from '@assets/images/jm-logo-white2.svg';
+import ProviderLogoSv from '@assets/images/jm-logo-white2.svg';
 /* eslint-enable import/no-duplicates */
 import RadioButtonOff from '@assets/images/icons/radio-button-off.svg';
 import RadioButtonOn from '@assets/images/icons/radio-button-on.svg';
