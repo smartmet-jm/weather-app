@@ -53,6 +53,8 @@ import RainWhite from '@assets/images/icons/rain-white.svg';
 import Search from '@assets/images/icons/search.svg';
 import Settings from '@assets/images/icons/settings.svg';
 import Snow from '@assets/images/icons/snow.svg';
+import CoatOfArms from '@assets/images/jm-coat-of-arms.svg';
+import MsjLogo from '@assets/images/msj_logo.svg';
 import SocialInstagramDark from '@assets/images/icons/social-instagram-dark.svg';
 import SocialTwitterDark from '@assets/images/icons/social-twitter-dark.svg';
 import SocialYoutubeDark from '@assets/images/icons/social-youtube-dark.svg';
@@ -317,6 +319,10 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <Settings {...(props as SvgProps)} />;
     case 'snow':
       return <Snow {...(props as SvgProps)} />;
+    case 'coat-of-arms':
+      return <CoatOfArms {...(props as SvgProps)} />;
+    case 'msj-logo':
+      return <MsjLogo {...(props as SvgProps)} />;
     case 'social-instagram-dark':
       return <SocialInstagramDark {...(props as SvgProps)} />;
     case 'social-twitter-dark':
