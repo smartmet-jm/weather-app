@@ -775,7 +775,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF4F1D2D8B31C9937475FE5E /* Pods-MobileWeather.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -805,7 +805,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ACF76390861BAED338108CF /* Pods-MobileWeather.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

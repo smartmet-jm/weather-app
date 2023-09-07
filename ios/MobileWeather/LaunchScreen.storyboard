@@ -16,8 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SplashIconJm2" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-ko-OD1">
-                                <rect key="frame" x="93" y="361" width="240" height="207"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CoatOfArms" translatesAutoresizingMaskIntoConstraints="NO" id="7JP-8S-VTx">
+                                <rect key="frame" x="93" y="477" width="240" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SplashIconJm" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-ko-OD1">
+                                <rect key="frame" x="93" y="232" width="240" height="207"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -31,6 +35,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashIconJm2" width="150" height="150"/>
+        <image name="CoatOfArms" width="150" height="150"/>
+        <image name="SplashIconJm" width="150" height="150.33332824707031"/>
     </resources>
 </document>
