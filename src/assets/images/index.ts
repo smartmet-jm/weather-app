@@ -8,6 +8,7 @@ import s6 from './symbols/6.svg';
 import s7 from './symbols/7.svg';
 import s9 from './symbols/9.svg';
 import s11 from './symbols/11.svg';
+import s21 from './symbols/21.svg';
 import s24 from './symbols/24.svg';
 import s27 from './symbols/27.svg';
 import s31 from './symbols/31.svg';
@@ -27,6 +28,7 @@ import s101 from './symbols/101.svg';
 import s102 from './symbols/102.svg';
 import s104 from './symbols/104.svg';
 import s106 from './symbols/106.svg';
+import s121 from './symbols/121.svg';
 import s124 from './symbols/124.svg';
 import s131 from './symbols/131.svg';
 import s132 from './symbols/132.svg';
@@ -66,6 +68,10 @@ export const symbols: WeatherSymbol = {
   '11': {
     day: s11,
     night: s11,
+  },
+  '21': {
+    day: s21,
+    night: s121,
   },
   '24': {
     day: s24,
