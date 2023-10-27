@@ -186,6 +186,7 @@ export interface ConfigType {
       excludeDayLength?: boolean;
       excludePolarNightAndMidnightSun?: boolean;
       excludeDayDuration?: boolean;
+      excludePolarNightAndMidnightSun?: boolean;
       infoBottomSheet?: {
         showAllSymbols?: boolean;
       };
