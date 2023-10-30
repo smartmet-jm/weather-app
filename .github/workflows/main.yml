@@ -202,9 +202,16 @@ jobs:
         with:
           ruby-version: '2.7.6'
 
+      # Update bundler
+      - name: Update bundler
+        run: bundle update --bundler
+        working-directory: ios
+
+      # Yarn install
       - name: Install dependencies
         run: yarn install
 
+      # Gem install bundler + bundle install
       - name: Install Ruby Dependencies
         run: gem install bundler && bundle install
         working-directory: ios
@@ -246,7 +253,7 @@ jobs:
          IOS_DEVELOPER_TEAM_ID: ${{ secrets.IOS_DEVELOPER_TEAM_ID }}
          IOS_PROVISIONINGPROFILE_NAME: ${{ secrets.IOS_PROVISIONINGPROFILE_NAME }}
          IOS_CODE_SIGNING_IDENTITY: ${{ secrets.IOS_CODE_SIGNING_IDENTITY }}
-         SLACK_WEB_HOOK_URL: ${{ secrets.SLACK_WEB_HOOK_URL }}
+         # SLACK_WEB_HOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
         working-directory: ios
 
       - name: Upload app-store ipa and dsyms to artifacts
