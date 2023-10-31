@@ -98,7 +98,6 @@ platform :ios do
      keychain_name: ENV['KEYCHAIN_NAME'],
      keychain_path: ENV['KEYCHAIN_PATH'],
      keychain_password: ENV["IOS_KEYCHAIN_PASSWORD"],
-     certificate_password: ENV["IOS_DIST_SIGNING_KEY_PASSWORD"],
      log_output: true
     )
 	    
