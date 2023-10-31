@@ -25,7 +25,8 @@ platform :ios do
 
   # Set ASC Key settings
   asc_key_id = ENV['ASC_KEY_ID']
-  asc_key_content = ENV['ASC_KEY']
+  asc_key_content = 'MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgND5ytaNiet6ph1y6wjDaImUUWG9Dg4o/vMk3cHYzY9OgCgYIKoZIzj0DAQehRANCAAQgctNykm6rhItPZUrKxKVZblwdcttmAylUgnjDoYgyMmQcLlNXAq7lpMwBrx6m9vBNFT2RTdovsWci1kebPaWG'
+  # ENV['ASC_KEY']
   asc_issuer_id = ENV['ASC_ISSUER_ID']
   
    desc "Increment build and version number and push to repository"
@@ -68,7 +69,7 @@ platform :ios do
       app_store_connect_api_key(
         key_id: asc_key_id,
         issuer_id: asc_issuer_id,
-        key_content: asc_key_content,
+        key_content: '-----BEGIN PRIVATE KEY-----\n'+asc_key_content+'\n-----END PRIVATE KEY-----',
 	    is_key_content_base64: false
       )
     end
