@@ -85,9 +85,9 @@ platform :ios do
      name: ENV['KEYCHAIN_NAME'],
     ) if File.exist? ENV['KEYCHAIN_PATH']
     create_keychain(
-     name: keychain_name,
+     name: ENV['KEYCHAIN_NAME'],
      unlock: true,
-     password: keychain_passwd,
+     password: ENV["IOS_KEYCHAIN_PASSWORD"],
      timeout: 0,
      default_keychain: true
     )
