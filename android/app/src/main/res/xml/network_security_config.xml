@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <!-- <domain includeSubdomains="true">smartmet-demo.fmi.fi</domain> -->
         <domain includeSubdomains="true">alert.metservice.gov.jm</domain>
+        <domain includeSubdomains="true">localhost</domain>
     </domain-config>
 </network-security-config>
