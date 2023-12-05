@@ -34,7 +34,7 @@ const TermsAndConditionsScreen: React.FC = () => {
     }
   });
 
-  const accessibilityMailToUrl = `mailto:director1@metservice.gov.jm?subject=Meteorogical Service Jamaica App accessibility feedback [versio: ${packageJSON.version}]`;
+  const accessibilityMailToUrl = `mailto:metservicejamaica@gmail.com?subject=Meteorogical Service Jamaica App accessibility feedback [versio: ${packageJSON.version}]`;
 
   const accessibility = '';
   const accessibilitySv = '';
