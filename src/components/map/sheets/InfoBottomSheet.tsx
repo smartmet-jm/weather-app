@@ -38,7 +38,6 @@ const generateTemperatureLegend = () => {
           i === 46
             ? styles.rainBlockTen
             : styles.rainBlock,
-          { backgroundColor: getTemperatureIndexColor(i) },
         ]}
       />
     );
