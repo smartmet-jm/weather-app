@@ -24,7 +24,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
   const { t } = useTranslation('navigation');
   const { colors, dark } = useTheme();
 
+  const feedback = Config.get('feedback');
   const socialMediaLinks = Config.get('socialMediaLinks');
+
   const handleSocialPress = async (appUrl: string, fallback: string) => {
     const supported = await Linking.canOpenURL(appUrl);
     if (supported) {
@@ -51,9 +53,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t('settings')}`}>
                 <View style={styles.row}>
-                  <Text style={[styles.text, { color: colors.text }]}>{`${t(
-                    'settings'
-                  )}`}</Text>
+                  <Text style={[styles.text, { color: colors.text }]}>
+                    {`${t('settings')}`}
+                  </Text>
                   <Icon
                     name="arrow-forward"
                     width={22}
@@ -72,9 +74,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               <View style={styles.row}>
                 <Text
                   accessibilityRole="header"
-                  style={[styles.text, { color: colors.text }]}>{`${t(
-                  'about'
-                )}`}</Text>
+                  style={[styles.text, { color: colors.text }]}>
+                  {`${t('about')}`}
+                </Text>
               </View>
             </View>
             <View
@@ -89,10 +91,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t('general')}`}>
                 <View style={styles.row}>
-                  <Text
-                    style={[styles.textRegular, { color: colors.text }]}>{`${t(
-                    'general'
-                  )}`}</Text>
+                  <Text style={[styles.textRegular, { color: colors.text }]}>
+                    {`${t('general')}`}
+                  </Text>
                   <Icon
                     name="arrow-forward"
                     width={22}
@@ -116,10 +117,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
                   'termsAndConditions'
                 )}`}>
                 <View style={styles.row}>
-                  <Text
-                    style={[styles.textRegular, { color: colors.text }]}>{`${t(
-                    'termsAndConditions'
-                  )}`}</Text>
+                  <Text style={[styles.textRegular, { color: colors.text }]}>
+                    {`${t('termsAndConditions')}`}
+                  </Text>
                   <Icon
                     name="arrow-forward"
                     width={22}
@@ -168,10 +168,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t('accessibility')}`}>
                 <View style={styles.row}>
-                  <Text
-                    style={[styles.textRegular, { color: colors.text }]}>{`${t(
-                    'accessibility'
-                  )}`}</Text>
+                  <Text style={[styles.textRegular, { color: colors.text }]}>
+                    {`${t('accessibility')}`}
+                  </Text>
                   <Icon
                     name="arrow-forward"
                     width={22}
@@ -182,29 +181,31 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               </AccessibleTouchableOpacity>
             </View>
 
-            <View
-              style={[
-                styles.withBorderBottom,
-                { borderBottomColor: colors.border },
-              ]}>
-              <AccessibleTouchableOpacity
-                delayPressIn={100}
-                onPress={() => navigation.navigate('GiveFeedback')}
-                accessibilityRole="menuitem"
-                accessibilityHint={`${t('navigateTo')} ${t('feedback')}`}>
-                <View style={styles.row}>
-                  <Text style={[styles.text, { color: colors.text }]}>{`${t(
-                    'feedback'
-                  )}`}</Text>
-                  <Icon
-                    name="arrow-forward"
-                    width={22}
-                    height={22}
-                    style={{ color: colors.text }}
-                  />
-                </View>
-              </AccessibleTouchableOpacity>
-            </View>
+            {feedback?.enabled && (
+              <View
+                style={[
+                  styles.withBorderBottom,
+                  { borderBottomColor: colors.border },
+                ]}>
+                <AccessibleTouchableOpacity
+                  delayPressIn={100}
+                  onPress={() => navigation.navigate('GiveFeedback')}
+                  accessibilityRole="menuitem"
+                  accessibilityHint={`${t('navigateTo')} ${t('feedback')}`}>
+                  <View style={styles.row}>
+                    <Text style={[styles.text, { color: colors.text }]}>
+                      {`${t('feedback')}`}
+                    </Text>
+                    <Icon
+                      name="arrow-forward"
+                      width={22}
+                      height={22}
+                      style={{ color: colors.text }}
+                    />
+                  </View>
+                </AccessibleTouchableOpacity>
+              </View>
+            )}
           </View>
           <View style={[styles.logoRow]}>
             <Icon name="coat-of-arms" width={100} height={100} />

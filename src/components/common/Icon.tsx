@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
@@ -28,6 +27,7 @@ import InfoSaveLocationLight from '@assets/images/icons/info-save-location-light
 import Info from '@assets/images/icons/info.svg';
 import Layers from '@assets/images/icons/layers.svg';
 import Locate from '@assets/images/icons/locate.svg';
+import MaintenanceStripIcon from '@assets/images/icons/maintenance-strip-icon.svg';
 import MapMarker from '@assets/images/icons/map-marker.svg';
 import Map from '@assets/images/icons/map.svg';
 import Menu from '@assets/images/icons/menu.svg';
@@ -40,11 +40,11 @@ import Play from '@assets/images/icons/play.svg';
 import Plus from '@assets/images/icons/plus.svg';
 import PolarNight from '@assets/images/icons/polar-night.svg';
 import Precipitation from '@assets/images/icons/precipitation.svg';
-/* eslint-disable import/no-duplicates */
+
 import ProviderLogoEn from '@assets/images/jm-logo-white2.svg';
 import ProviderLogoFi from '@assets/images/jm-logo-white2.svg';
 import ProviderLogoSv from '@assets/images/jm-logo-white2.svg';
-/* eslint-enable import/no-duplicates */
+
 import RadioButtonOff from '@assets/images/icons/radio-button-off.svg';
 import RadioButtonOn from '@assets/images/icons/radio-button-on.svg';
 import RainDark from '@assets/images/icons/rain-dark.svg';
@@ -86,7 +86,6 @@ import WarningsFloodingRed from '@assets/images/icons/warnings-flooding-red.svg'
 import WarningsForestFireWeatherOrange from '@assets/images/icons/warnings-forest-fire-weather-orange.svg';
 import WarningsForestFireWeatherRed from '@assets/images/icons/warnings-forest-fire-weather-red.svg';
 import WarningsForestFireWeatherYellow from '@assets/images/icons/warnings-forest-fire-weather-yellow.svg';
-import WarningsGrassFireWeather from '@assets/images/icons/warnings-grass-fire-weather.svg';
 import WarningsHotWeatherOrange from '@assets/images/icons/warnings-hot-weather-orange.svg';
 import WarningsHotWeatherRed from '@assets/images/icons/warnings-hot-weather-red.svg';
 import WarningsHotWeatherYellow from '@assets/images/icons/warnings-hot-weather-yellow.svg';
@@ -116,13 +115,28 @@ import WarningsRedDark from '@assets/images/icons/warnings-red-dark.svg';
 import WeatherSymbol from '@assets/images/icons/weather-symbol.svg';
 import Weather from '@assets/images/icons/weather.svg';
 import WindDark from '@assets/images/icons/wind-dark.svg';
-/* eslint-disable import/no-duplicates */
+
 import WindArrow from '@assets/images/icons/wind-arrow.svg';
 import WindLight from '@assets/images/icons/wind-arrow.svg';
 import WindLightMap from '@assets/images/icons/wind-arrow.svg';
 import WindNextHour from '@assets/images/icons/wind-arrow.svg';
-/* eslint-enable import/no-duplicates */
+
 import Wind from '@assets/images/icons/wind.svg';
+
+// Legend
+import Flash1 from '@assets/images/legend/flash_red.svg';
+import Flash2 from '@assets/images/legend/flash_yellow1.svg';
+import Flash3 from '@assets/images/legend/flash_yellow2.svg';
+import Flash1Dark from '@assets/images/legend/flash_red.svg';
+import Flash2Dark from '@assets/images/legend/flash_yellow1.svg';
+import Flash3Dark from '@assets/images/legend/flash_yellow2.svg';
+import WindArrow0 from '@assets/images/legend/arrow0.svg';
+import WindArrow1 from '@assets/images/legend/arrow1.svg';
+import WindArrow2 from '@assets/images/legend/arrow2.svg';
+import WindArrow3 from '@assets/images/legend/arrow3.svg';
+import WindArrow4 from '@assets/images/legend/arrow4.svg';
+import WindArrow5 from '@assets/images/legend/arrow5.svg';
+import WindArrow6 from '@assets/images/legend/arrow6.svg';
 
 // FeelsLike Icons
 import FeelsLikeBasic from '@assets/images/feelslike/basic.svg';
@@ -273,6 +287,8 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <Layers {...(props as SvgProps)} />;
     case 'locate':
       return <Locate {...(props as SvgProps)} />;
+    case 'maintenance-strip-icon':
+      return <MaintenanceStripIcon {...(props as SvgProps)} />;
     case 'map-marker':
       return <MapMarker {...(props as SvgProps)} />;
     case 'map':
@@ -391,8 +407,6 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <WarningsForestFireWeatherRed {...(props as SvgProps)} />;
     case 'warnings-forest-fire-weather-yellow':
       return <WarningsForestFireWeatherYellow {...(props as SvgProps)} />;
-    case 'warnings-grass-fire-weather':
-      return <WarningsGrassFireWeather {...(props as SvgProps)} />;
     case 'warnings-hot-weather-orange':
     case 'warnings-cold-weather-orange':
       return <WarningsHotWeatherOrange {...(props as SvgProps)} />;
@@ -631,6 +645,32 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <TsunamiWatch {...(props as SvgProps)} />;
     case 'Very Poor Visibility':
       return <VeryPoorVisibility {...(props as SvgProps)} />;
+    case 'flash1':
+      return <Flash1 {...(props as SvgProps)} />;
+    case 'flash2':
+      return <Flash2 {...(props as SvgProps)} />;
+    case 'flash3':
+      return <Flash3 {...(props as SvgProps)} />;
+    case 'flash1-dark':
+      return <Flash1Dark {...(props as SvgProps)} />;
+    case 'flash2-dark':
+      return <Flash2Dark {...(props as SvgProps)} />;
+    case 'flash3-dark':
+      return <Flash3Dark {...(props as SvgProps)} />;
+    case 'wind-arrow-0':
+      return <WindArrow0 {...(props as SvgProps)} />;
+    case 'wind-arrow-1':
+      return <WindArrow1 {...(props as SvgProps)} />;
+    case 'wind-arrow-2':
+      return <WindArrow2 {...(props as SvgProps)} />;
+    case 'wind-arrow-3':
+      return <WindArrow3 {...(props as SvgProps)} />;
+    case 'wind-arrow-4':
+      return <WindArrow4 {...(props as SvgProps)} />;
+    case 'wind-arrow-5':
+      return <WindArrow5 {...(props as SvgProps)} />;
+    case 'wind-arrow-6':
+      return <WindArrow6 {...(props as SvgProps)} />;
     default:
       return <IonIcon name={name} {...props} />;
   }

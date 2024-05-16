@@ -65,7 +65,9 @@ const CommonHeaderTitle: React.FC<CommonHeaderProps> = ({
             style={[
               styles.timezone,
               !isLandscape && styles.timeZoneMarginBottom,
-            ]}>{`${t('timezone')}: ${currentLocation.timezone}`}</Text>
+            ]}>
+            {`${t('timezone')}: ${currentLocation.timezone}`}
+          </Text>
         )}
       </AccessibleTouchableOpacity>
     </View>

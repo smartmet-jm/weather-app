@@ -144,9 +144,11 @@ const NextHourForecastPanel: React.FC<NextHourForecastPanelProps> = ({
                   styles.text,
                   styles.bold,
                   { color: colors.primaryText },
-                ]}>{`${t('at')} ${currentTime.format(
-                clockType === 12 ? 'h.mm a' : 'HH.mm'
-              )}`}</Text>
+                ]}>
+                {`${t('at')} ${currentTime.format(
+                  clockType === 12 ? 'h.mm a' : 'HH.mm'
+                )}`}
+              </Text>
             </View>
             <View style={[styles.row, styles.alignStart]} accessible>
               <Text
@@ -265,10 +267,12 @@ const NextHourForecastPanel: React.FC<NextHourForecastPanelProps> = ({
                     precipitationUnit
                   )}`
                 )}`}>
-                <Text style={styles.bold}>{`${
-                  precipitationValue?.replace('.', decimalSeparator) ||
-                  (0).toFixed(1).replace('.', decimalSeparator)
-                }`}</Text>
+                <Text style={styles.bold}>
+                  {`${
+                    precipitationValue?.replace('.', decimalSeparator) ||
+                    (0).toFixed(1).replace('.', decimalSeparator)
+                  }`}
+                </Text>
                 {` ${precipitationUnit}`}
               </Text>
             </>

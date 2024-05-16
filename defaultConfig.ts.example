@@ -126,7 +126,14 @@ const defaultConfig: ConfigType = {
   ],
   onboardingWizard: {
     enabled: false,
-  }
+  },
+  feedback: {
+    enabled: true,
+    email: '',
+    subject: {
+      en: '',
+    },
+  },
 };
 
 export default defaultConfig;

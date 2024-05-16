@@ -297,7 +297,7 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
                         {
                           transform: [
                             {
-                              rotate: `135deg`,
+                              rotate: '135deg',
                             },
                           ],
                         },
@@ -806,7 +806,9 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
                           styles.text,
                           styles.flex1,
                           { color: colors.hourListText },
-                        ]}>{`${t(`symbols:${item.key}`)}`}</Text>
+                        ]}>
+                        {`${t(`symbols:${item.key}`)}`}
+                      </Text>
                     </View>
                   )
                 )}

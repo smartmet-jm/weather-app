@@ -19,7 +19,7 @@ export const getItem = async (key: StorageKey): Promise<string | null> => {
 
 export const multiGet = async (
   keys: StorageKey[]
-): Promise<[string, string | null][]> => {
+): Promise<readonly [string, string | null][]> => {
   try {
     const values = await AsyncStorage.multiGet(keys);
     return values;
@@ -58,6 +58,6 @@ export const clear = async (): Promise<void> => {
     console.log('Async storage clear');
   } catch (error) {
     console.error(error);
-    throw Error(`Error clearing async storage`);
+    throw Error('Error clearing async storage');
   }
 };

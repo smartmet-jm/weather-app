@@ -211,10 +211,9 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
                   },
                 ]}>
                 <Text
-                  style={[
-                    styles.regularText,
-                    { color: colors.hourListText },
-                  ]}>{`${convertedFeelsLike}°`}</Text>
+                  style={[styles.regularText, { color: colors.hourListText }]}>
+                  {`${convertedFeelsLike}°`}
+                </Text>
               </View>
             );
           }
@@ -247,10 +246,9 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
                       )}`
                     ),
                   })}
-                  style={[
-                    styles.regularText,
-                    { color: colors.hourListText },
-                  ]}>{`${convertedDewPoint}°`}</Text>
+                  style={[styles.regularText, { color: colors.hourListText }]}>
+                  {`${convertedDewPoint}°`}
+                </Text>
               </View>
             );
           }
@@ -283,10 +281,9 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
                       )}`
                     ),
                   })}
-                  style={[
-                    styles.regularText,
-                    { color: colors.hourListText },
-                  ]}>{`${convertedPressure}`}</Text>
+                  style={[styles.regularText, { color: colors.hourListText }]}>
+                  {`${convertedPressure}`}
+                </Text>
               </View>
             );
           }
