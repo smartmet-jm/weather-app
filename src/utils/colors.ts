@@ -73,6 +73,15 @@ export const RAIN_6_DARK = '#D29F00';
 export const RAIN_7_DARK = '#AE5200';
 export const RAIN_8_DARK = '#760000';
 
+export const RAIN_1 = 'rgb(208,219,239)';
+export const RAIN_2 = 'rgb(208,219,239)';
+export const RAIN_3 = 'rgb(134,152,211)';
+export const RAIN_4 = 'rgb(134,152,211)';
+export const RAIN_5 = 'rgb(11,89,178)';
+export const RAIN_6 = 'rgb(11,89,178)';
+export const RAIN_7 = 'rgb(91,26,142)';
+export const RAIN_8 = 'rgb(91,26,142)';
+
 export const CHART_BLUE = '#7594EB';
 export const HEADER_BLUE = '#10399E';
 export const OBSERVATION_LIST_GRAY = '#F0F0F0';
