@@ -15,38 +15,8 @@ import { State } from '@store/types';
 import { selectActiveOverlay } from '@store/map/selectors';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { getTemperatureIndexColor } from '@utils/colors';
-
 type InfoBottomSheetProps = {
   onClose: () => void;
-};
-
-const generateTemperatureLegend = () => {
-  const views = [];
-  let i = 1;
-  while (i <= 50) {
-    views.push(
-      <View
-        key={i}
-        style={[
-          i === 1 ||
-          i === 7 ||
-          i === 12 ||
-          i === 17 ||
-          i === 22 ||
-          i === 30 ||
-          i === 36 ||
-          i === 41 ||
-          i === 46
-            ? styles.rainBlockTen
-            : styles.rainBlock,
-          { backgroundColor: getTemperatureIndexColor(i) },
-        ]}
-      />
-    );
-    i++;
-  }
-  return views;
 };
 
 const InfoBottomSheet: React.FC<InfoBottomSheetProps> = ({ onClose }) => {
@@ -555,11 +525,6 @@ const styles = StyleSheet.create({
   rainBlock: {
     flexGrow: 1,
     height: 8,
-    margin: 1,
-  },
-  rainBlockTen: {
-    flexGrow: 1,
-    height: 16,
     margin: 1,
   },
   withMarginBottom: {
