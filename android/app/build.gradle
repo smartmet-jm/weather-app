@@ -94,6 +94,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
+    namespace "jm.gov.metservice"
     defaultConfig {
         applicationId "jm.gov.metservice"
         minSdkVersion rootProject.ext.minSdkVersion
