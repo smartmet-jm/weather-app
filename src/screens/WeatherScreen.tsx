@@ -17,7 +17,7 @@ import ObservationPanel from '@components/weather/ObservationPanel';
 
 import { Config } from '@config';
 import { useReloader } from '@utils/reloader';
-import CrisisStrip from '@components/announcements/CrisisStrip';
+import AnnouncementStrip from '@components/announcements/AnnouncementStrip';
 
 const mapStateToProps = (state: State) => ({
   announcements: selectAnnouncements(state),
@@ -129,7 +129,7 @@ const WeatherScreen: React.FC<WeatherScreenProps> = ({
         contentContainerStyle={[styles.contentContainer]}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={announcements && [0]}>
-        <CrisisStrip style={styles.crisisStrip} />
+        <AnnouncementStrip style={styles.crisisStrip} />
         <NextHourForecastPanel />
         <ForecastPanel />
         <ObservationPanel />
