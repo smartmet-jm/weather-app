@@ -50,7 +50,7 @@
     "loading": "Loading content"
   },
   "forecast": {
-    "nextHourForecast": "Next hour's forecast,",
+    "nextHourForecast": "Forecast",
     "precipitation": "precipitation",
     "celsius": "degrees Celsius",
     "fahrenheit": "degrees Fahrenheit",
@@ -375,6 +375,7 @@
     "addToFavorites": "Add {{ location }} to My Places",
     "removeFromFavorites": "Remove {{ location }} from My Places",
     "selectedLocation": "Selected location: {{ location }}",
+    "loading": "Loading search results",
     "infoSheet": {
       "closeButtonAccessibilityLabel": "Close search screen info",
       "saveAndDeleteTitle": "Saving and deleting My Places",
@@ -464,8 +465,7 @@
       "rain": "Rain warning",
       "trafficWeather": "Traffic weather",
       "pedestrianSafety": "Pedestrian weather",
-      "forestFireWeather": "Forest fire warning",
-      "grassFireWeather": "Grass fire warning",
+      "forestFireWeather": "Wildfire warning",
       "hotWeather": "Heat wave warning",
       "coldWeather": "Freezing temperature warning",
       "uvNote": "UV bulletin",
@@ -525,8 +525,7 @@
     "accept": "Accept",
     "location": "Location",
     "locationDescription": "The app uses the device location to locate the user. The location is used only for visual display purposes. ",
-    "acceptLocation": "Next",
-    "declineLocation": "Do not allow"
+    "showBuiltInLocationPermissionQuestion": "Next"
   },
   "onboarding": {
     "next": "Next",

@@ -271,13 +271,13 @@ const getWMSLayerUrlsAndBounds = async (
         bbox: '{minX},{minY},{maxX},{maxY}',
         width: '{width}',
         height: '{height}',
-        format: 'image/png',
+        format: 'image/webp',
         srs: 'EPSG:3857',
         crs: 'EPSG:3857',
         ...customParameters,
       });
 
-      const overlayUrl = `${url}/wms?${query.toString()}`;
+      const overlayUrl = decodeURIComponent(`${url}/wms?${query.toString()}`);
 
       Object.assign(toReturn, {
         [layerSrc.type]: {

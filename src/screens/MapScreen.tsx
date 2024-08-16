@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { View, StyleSheet, Platform } from 'react-native';
-import MapView, { Camera, MapEvent, Region } from 'react-native-maps';
+import MapView, { Camera, Region } from 'react-native-maps';
+import type { MapEvent } from 'react-native-maps';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { useTheme, useIsFocused } from '@react-navigation/native';
 import { getDistance } from 'geolib';
@@ -13,7 +14,7 @@ import TimeseriesOverlay from '@components/map/layers/TimeseriesOverlay';
 import MapLayersBottomSheet from '@components/map/sheets/MapLayersBottomSheet';
 import InfoBottomSheet from '@components/map/sheets/InfoBottomSheet';
 import MapMarker from '@components/map/layers/MapMarker';
-import CrisisStrip from '@components/announcements/CrisisStrip';
+import Announcements from '@components/announcements/Announcements';
 
 import { State } from '@store/types';
 import { selectCurrent, selectTimeZone } from '@store/location/selector';
@@ -134,9 +135,9 @@ const MapScreen: React.FC<MapScreenProps> = ({
 
   const handleZoomIn = () => {
     mapRef.current.getCamera().then((cam: Camera) => {
-      if (Platform.OS === 'ios') {
+      if (Platform.OS === 'ios' && cam.altitude !== undefined) {
         mapRef.current.animateCamera({ altitude: cam.altitude - 50000 });
-      } else {
+      } else if (Platform.OS === 'android' && cam.zoom !== undefined) {
         mapRef.current.animateCamera({ zoom: cam.zoom + 1 });
       }
     });
@@ -144,9 +145,9 @@ const MapScreen: React.FC<MapScreenProps> = ({
 
   const handleZoomOut = () => {
     mapRef.current.getCamera().then((cam: Camera) => {
-      if (Platform.OS === 'ios') {
+      if (Platform.OS === 'ios' && cam.altitude !== undefined) {
         mapRef.current.animateCamera({ altitude: cam.altitude + 50000 });
-      } else {
+      } else if (Platform.OS === 'android' && cam.zoom !== undefined) {
         mapRef.current.animateCamera({ zoom: cam.zoom - 1 });
       }
     });
@@ -164,7 +165,6 @@ const MapScreen: React.FC<MapScreenProps> = ({
       }
     }
   };
-
   const onPress = (e: MapEvent<{}>) => {
     if (e.nativeEvent.action !== 'marker-press') {
       updateSelectedCallout(undefined);
@@ -214,7 +214,7 @@ const MapScreen: React.FC<MapScreenProps> = ({
           />
         )}
       </MapView>
-      <CrisisStrip style={styles.crisisStrip} />
+      <Announcements style={styles.announcements} />
       <MapControls
         onLayersPressed={() => mapLayersSheetRef.current.open()}
         onInfoPressed={() => infoSheetRef.current.open()}
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     backgroundColor: GRAY_1,
     width: 65,
   },
-  crisisStrip: {
+  announcements: {
     marginTop: 30,
     width: '100%',
   },
