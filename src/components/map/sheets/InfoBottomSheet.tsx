@@ -70,6 +70,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  title: {
+    fontSize: 16,
+    fontFamily: 'Roboto-Bold',
+  },
 });
 
 export default InfoBottomSheet;
