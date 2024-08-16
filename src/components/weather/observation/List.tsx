@@ -22,7 +22,6 @@ import { Config } from '@config';
 import { ClockType } from '@store/settings/types';
 import { getForecastParameterUnitTranslationKey } from '@utils/units';
 import { ChartType } from '../charts/types';
-import DailyObservationRow from './DailyObservationRow';
 
 type ListProps = {
   clockType: ClockType;
@@ -437,14 +436,6 @@ const List: React.FC<ListProps> = ({
                         </View>
                         {getRowValues(timeStep)}
                       </>
-                    )}
-                    {isDaily && (
-                      <DailyObservationRow
-                        // @ts-ignore
-                        parameter={parameter}
-                        epochtime={timeStep.epochtime}
-                        data={data}
-                      />
                     )}
                   </View>
                 </View>
