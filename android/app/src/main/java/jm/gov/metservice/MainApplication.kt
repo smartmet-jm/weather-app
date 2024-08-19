@@ -1,4 +1,4 @@
-package fi.fmi.mobileweather;
+package jm.gov.metservice;
 
 import android.app.Application
 import com.facebook.react.PackageList

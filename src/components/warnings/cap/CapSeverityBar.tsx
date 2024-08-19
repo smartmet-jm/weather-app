@@ -29,6 +29,7 @@ function CapSeverityBar({ severities }: { severities: number[] }) {
       ]}>
       {severities.map((severity, index) => (
         <View
+          key={`${index}-${severity}`}
           style={[
             styles.bar,
             index !== 3 &&
