@@ -1,34 +1,29 @@
 import React from 'react';
-// import Icon from '@components/common/Icon';
 import { View, StyleSheet, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-// import { Config } from '@config';
+import { Config } from '@config';
 
 import CloseButton from '@components/common/CloseButton';
 
 import { CustomTheme } from '@utils/colors';
 
-// import { State } from '@store/types';
-// import { selectActiveOverlay } from '@store/map/selectors';
-import { ScrollView } from 'react-native-gesture-handler';
+import { State } from '@store/types';
+import { selectActiveOverlay } from '@store/map/selectors';
 
 type InfoBottomSheetProps = {
   onClose: () => void;
 };
-
 const InfoBottomSheet: React.FC<InfoBottomSheetProps> = ({ onClose }) => {
   const { t } = useTranslation('map');
   const { colors } = useTheme() as CustomTheme;
-  // const { layers } = Config.get('map');
-
-  // const timeseriesEnabled = layers.some((layer) => layer.type === 'Timeseries');
+  const { layers } = Config.get('map');
 
   // get selected layer
-  // const layerId = useSelector((state: State) => selectActiveOverlay(state));
-  // const layer = layers.find((l) => l.id === layerId);
+  const layerId = useSelector((state: State) => selectActiveOverlay(state));
+  const layer = layers.find((l) => l.id === layerId);
 
   return (
     <View style={styles.wrapper}>
@@ -45,7 +40,83 @@ const InfoBottomSheet: React.FC<InfoBottomSheetProps> = ({ onClose }) => {
             {t('infoBottomSheet.mapLayersInfoTitle')}
           </Text>
         </View>
-        <ScrollView />
+        {layer?.legend?.hasPrecipitation && (
+          <View>
+            <View>
+              <Text style={[styles.text, { color: colors.hourListText }]}>
+                {t('infoBottomSheet.rainRadarInfo')}
+              </Text>
+            </View>
+            <View style={styles.rowWrapper}>
+              <View style={[styles.row, styles.rainContainer]}>
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[1] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[2] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[3] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[4] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[5] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[6] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[7] },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.rainBlock,
+                    { backgroundColor: colors.rain[8] },
+                  ]}
+                />
+              </View>
+              <View style={styles.sheetTitle}>
+                <Text style={[styles.text, { color: colors.hourListText }]}>
+                  {t('map:infoBottomSheet:light')}
+                </Text>
+                <Text style={[styles.text, { color: colors.hourListText }]}>
+                  {t('map:infoBottomSheet:moderate')}
+                </Text>
+                <Text style={[styles.text, { color: colors.hourListText }]}>
+                  {t('map:infoBottomSheet:strong')}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.withMarginBottom}>
+              <Text style={[styles.text, { color: colors.hourListText }]}>
+                {t('infoBottomSheet.mapLayersInfo')}
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -70,9 +141,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  rowWrapper: {
+    paddingBottom: 28,
+    paddingTop: 15,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 16,
+    fontFamily: 'Roboto-Regular',
+  },
   title: {
     fontSize: 16,
     fontFamily: 'Roboto-Bold',
+  },
+  rainContainer: {
+    justifyContent: 'space-around',
+    marginBottom: 5,
+  },
+  rainBlock: {
+    flexGrow: 1,
+    height: 8,
+    margin: 1,
+  },
+  withMarginBottom: {
+    marginBottom: 28,
   },
 });
 

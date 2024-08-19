@@ -43,14 +43,7 @@ export interface MapLayer {
   type: 'WMS' | 'GeoJSON' | 'Timeseries';
   name: { [lang: string]: string };
   legend?: {
-    hasPrecipitationFin?: boolean;
-    hasPrecipitationScan?: boolean;
-    hasLightning15?: boolean;
-    hasLightning60?: boolean;
-    hasWindArrowsShort?: boolean;
-    hasWindArrowsLong?: boolean;
-    hasTemperatureShort?: boolean;
-    hasTemperatureLong?: boolean;
+    hasPrecipitation?: boolean;
   };
   sources: WMSSource[] | TimeseriesSource[];
   times: Times;
