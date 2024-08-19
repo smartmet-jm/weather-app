@@ -497,8 +497,8 @@
       "warnings": {
         "tropicalStorm" : "Tropical storm",
         "hurricane": "Hurricane",
-        "heavyRainfall": "Heavy Rainfall (75-100 mm in 24 hours",
-        "veryHeavyRainfall": "Very heavy Rainfall (more than 100 mm in 24 hours",
+        "heavyRainfall": "Heavy Rainfall (75-100 mm in 24 hours)",
+        "veryHeavyRainfall": "Very heavy Rainfall (more than 100 mm in 24 hours)",
         "thunderstorms": "Thunderstorms",
         "landslides": "Landslides",
         "flooding": "Flooding",
