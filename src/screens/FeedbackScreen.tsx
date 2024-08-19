@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Linking, Platform } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import { Config } from '@config';
 
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import Icon from '@components/common/Icon';
@@ -9,14 +10,18 @@ import Icon from '@components/common/Icon';
 import packageJSON from '../../package.json';
 
 const FeedbackScreen: React.FC = () => {
-  const { t } = useTranslation('feedback');
+  const { t, i18n } = useTranslation('feedback');
   const { colors } = useTheme();
+
+  const feedback = Config.get('feedback');
 
   const platformInfo = `(${
     Platform.OS === 'ios' ? Platform.constants.systemName : 'android'
   }/${Platform.Version}/${packageJSON.version})`;
 
-  const mailToUrl = `mailto:metservicejamaica@gmail.com?subject=Weather App feedback ${platformInfo}`;
+  const mailToUrl = `mailto:${feedback?.email || ''}?subject=${
+    feedback?.subject[i18n.language] || ''
+  } ${platformInfo}`;
 
   return (
     <View>

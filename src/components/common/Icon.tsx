@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
@@ -40,11 +39,11 @@ import Play from '@assets/images/icons/play.svg';
 import Plus from '@assets/images/icons/plus.svg';
 import PolarNight from '@assets/images/icons/polar-night.svg';
 import Precipitation from '@assets/images/icons/precipitation.svg';
-/* eslint-disable import/no-duplicates */
+
 import ProviderLogoEn from '@assets/images/jm-logo-white2.svg';
 import ProviderLogoFi from '@assets/images/jm-logo-white2.svg';
 import ProviderLogoSv from '@assets/images/jm-logo-white2.svg';
-/* eslint-enable import/no-duplicates */
+
 import RadioButtonOff from '@assets/images/icons/radio-button-off.svg';
 import RadioButtonOn from '@assets/images/icons/radio-button-on.svg';
 import RainDark from '@assets/images/icons/rain-dark.svg';
@@ -79,14 +78,12 @@ import TemperatureLowestLight from '@assets/images/icons/temperature-lowest-ligh
 import Temperature from '@assets/images/icons/temperature.svg';
 import Thunder from '@assets/images/icons/thunder.svg';
 import Time from '@assets/images/icons/time.svg';
-
 import WarningsFloodingYellow from '@assets/images/icons/warnings-flooding-yellow.svg';
 import WarningsFloodingOrange from '@assets/images/icons/warnings-flooding-orange.svg';
 import WarningsFloodingRed from '@assets/images/icons/warnings-flooding-red.svg';
 import WarningsForestFireWeatherOrange from '@assets/images/icons/warnings-forest-fire-weather-orange.svg';
 import WarningsForestFireWeatherRed from '@assets/images/icons/warnings-forest-fire-weather-red.svg';
 import WarningsForestFireWeatherYellow from '@assets/images/icons/warnings-forest-fire-weather-yellow.svg';
-import WarningsGrassFireWeather from '@assets/images/icons/warnings-grass-fire-weather.svg';
 import WarningsHotWeatherOrange from '@assets/images/icons/warnings-hot-weather-orange.svg';
 import WarningsHotWeatherRed from '@assets/images/icons/warnings-hot-weather-red.svg';
 import WarningsHotWeatherYellow from '@assets/images/icons/warnings-hot-weather-yellow.svg';
@@ -112,16 +109,15 @@ import WarningsYellowLight from '@assets/images/icons/warnings-yellow-light.svg'
 import WarningsYellowDark from '@assets/images/icons/warnings-yellow-dark.svg';
 import WarningsRedLight from '@assets/images/icons/warnings-red-light.svg';
 import WarningsRedDark from '@assets/images/icons/warnings-red-dark.svg';
-
 import WeatherSymbol from '@assets/images/icons/weather-symbol.svg';
 import Weather from '@assets/images/icons/weather.svg';
 import WindDark from '@assets/images/icons/wind-dark.svg';
-/* eslint-disable import/no-duplicates */
+
 import WindArrow from '@assets/images/icons/wind-arrow.svg';
 import WindLight from '@assets/images/icons/wind-arrow.svg';
 import WindLightMap from '@assets/images/icons/wind-arrow.svg';
 import WindNextHour from '@assets/images/icons/wind-arrow.svg';
-/* eslint-enable import/no-duplicates */
+
 import Wind from '@assets/images/icons/wind.svg';
 
 // FeelsLike Icons
@@ -391,8 +387,6 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
       return <WarningsForestFireWeatherRed {...(props as SvgProps)} />;
     case 'warnings-forest-fire-weather-yellow':
       return <WarningsForestFireWeatherYellow {...(props as SvgProps)} />;
-    case 'warnings-grass-fire-weather':
-      return <WarningsGrassFireWeather {...(props as SvgProps)} />;
     case 'warnings-hot-weather-orange':
     case 'warnings-cold-weather-orange':
       return <WarningsHotWeatherOrange {...(props as SvgProps)} />;

@@ -86,7 +86,7 @@ platform :ios do
     ) if File.exist? ENV['KEYCHAIN_PATH']
     create_keychain(
      name: ENV['KEYCHAIN_NAME'],
-     password: ENV["IOS_KEYCHAIN_PASSWORD"],
+     password: ENV['IOS_KEYCHAIN_PASSWORD'],
      unlock: true,
      timeout: 0,
      default_keychain: true
@@ -111,7 +111,7 @@ platform :ios do
    # Update signing settings and build iOS app for release
    desc "Build the iOS app for release"
     lane :build_release do |options|
-    xcode_select("/Applications/Xcode.app")
+    xcode_select("/Applications/Xcode_15.3.app")
     app_identifier = ENV["IOS_APP_IDENTIFIER"]
     profile_name = ENV["IOS_PROVISIONINGPROFILE_NAME"] # the name of the profile to use for the build
     export_method = "app-store" # specify the export method

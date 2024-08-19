@@ -253,7 +253,7 @@ const getWMSLayerUrlsAndBounds = async (
         : wmsLayer.Dimension.text.split(/[,/]/);
 
       const layerStart = steps[0];
-      const layerEnd = steps.length > 3 ? steps[steps.length - 1] : steps[1];
+      const layerEnd = steps[1]; // Multiple time intervals are not supported
 
       const url = sources[layerSrc.source];
 
@@ -271,13 +271,13 @@ const getWMSLayerUrlsAndBounds = async (
         bbox: '{minX},{minY},{maxX},{maxY}',
         width: '{width}',
         height: '{height}',
-        format: 'image/png',
+        format: 'image/webp',
         srs: 'EPSG:3857',
         crs: 'EPSG:3857',
         ...customParameters,
       });
 
-      const overlayUrl = `${url}/wms?${query.toString()}`;
+      const overlayUrl = decodeURIComponent(`${url}/wms?${query.toString()}`);
 
       Object.assign(toReturn, {
         [layerSrc.type]: {

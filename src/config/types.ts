@@ -1,6 +1,9 @@
 import { Location } from '@store/location/types';
 import { DisplayParameters, ForecastParameters } from '@store/forecast/types';
-import { ObservationParameters } from '@store/observation/types';
+import {
+  ObservationParameters,
+  DailyObservationParameters,
+} from '@store/observation/types';
 
 type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
   T,
@@ -39,7 +42,9 @@ export interface MapLayer {
   id: number;
   type: 'WMS' | 'GeoJSON' | 'Timeseries';
   name: { [lang: string]: string };
-  // legend: string;
+  legend?: {
+    hasPrecipitation?: boolean;
+  };
   sources: WMSSource[] | TimeseriesSource[];
   times: Times;
   tileSize?: number;
@@ -49,8 +54,10 @@ interface Observation {
   updateInterval: number;
   numberOfStations: number;
   producer: string | { default: string; [name: string]: string };
+  dailyProducers?: string[];
   timePeriod: number;
   parameters: (keyof ObservationParameters)[];
+  dailyParameters?: (keyof DailyObservationParameters)[];
 }
 
 interface ObservationEnabled extends Observation {
@@ -156,6 +163,14 @@ interface OnboardingWizard {
   enabled: boolean;
 }
 
+interface Feedback {
+  enabled: boolean;
+  email: string;
+  subject: {
+    [locale: string]: string;
+  };
+}
+
 export interface ConfigType {
   dynamicConfig: DynamicConfigEnabled | DynamicConfigDisabled;
   location: {
@@ -209,4 +224,5 @@ export interface ConfigType {
   socialMediaLinks: SocialMediaLink[];
   unresolvedGeoIdErrorMessage?: UnresolvedGeoIdErrorMessage;
   onboardingWizard: OnboardingWizard;
+  feedback?: Feedback;
 }

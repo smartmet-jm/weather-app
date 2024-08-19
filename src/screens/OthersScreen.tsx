@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  ScrollView,
   View,
   SafeAreaView,
   Text,
   StyleSheet,
   Linking,
+  ScrollView,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTheme } from '@react-navigation/native';
@@ -24,7 +24,9 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
   const { t } = useTranslation('navigation');
   const { colors, dark } = useTheme();
 
+  const feedback = Config.get('feedback');
   const socialMediaLinks = Config.get('socialMediaLinks');
+
   const handleSocialPress = async (appUrl: string, fallback: string) => {
     const supported = await Linking.canOpenURL(appUrl);
     if (supported) {
@@ -182,29 +184,31 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               </AccessibleTouchableOpacity>
             </View>
 
-            <View
-              style={[
-                styles.withBorderBottom,
-                { borderBottomColor: colors.border },
-              ]}>
-              <AccessibleTouchableOpacity
-                delayPressIn={100}
-                onPress={() => navigation.navigate('GiveFeedback')}
-                accessibilityRole="menuitem"
-                accessibilityHint={`${t('navigateTo')} ${t('feedback')}`}>
-                <View style={styles.row}>
-                  <Text style={[styles.text, { color: colors.text }]}>{`${t(
-                    'feedback'
-                  )}`}</Text>
-                  <Icon
-                    name="arrow-forward"
-                    width={22}
-                    height={22}
-                    style={{ color: colors.text }}
-                  />
-                </View>
-              </AccessibleTouchableOpacity>
-            </View>
+            {feedback?.enabled && (
+              <View
+                style={[
+                  styles.withBorderBottom,
+                  { borderBottomColor: colors.border },
+                ]}>
+                <AccessibleTouchableOpacity
+                  delayPressIn={100}
+                  onPress={() => navigation.navigate('GiveFeedback')}
+                  accessibilityRole="menuitem"
+                  accessibilityHint={`${t('navigateTo')} ${t('feedback')}`}>
+                  <View style={styles.row}>
+                    <Text style={[styles.text, { color: colors.text }]}>{`${t(
+                      'feedback'
+                    )}`}</Text>
+                    <Icon
+                      name="arrow-forward"
+                      width={22}
+                      height={22}
+                      style={{ color: colors.text }}
+                    />
+                  </View>
+                </AccessibleTouchableOpacity>
+              </View>
+            )}
           </View>
           <View style={[styles.logoRow]}>
             <Icon name="coat-of-arms" width={100} height={100} />

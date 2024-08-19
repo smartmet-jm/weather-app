@@ -138,6 +138,13 @@ const TermsAndConditionsScreen: React.FC = () => {
               </Text>
             </>
           )}
+        {t('aviContact') !== 'aviContact' && (
+          <>
+            <Text style={[styles.body, { color: colors.hourListText }]}>
+              {t('aviContact')}
+            </Text>
+          </>
+        )}
         {t('website') !== 'website' && (
           <>
             <AccessibleTouchableOpacity
@@ -187,13 +194,6 @@ const TermsAndConditionsScreen: React.FC = () => {
                 </Text>
               </View>
             </AccessibleTouchableOpacity>
-          </>
-        )}
-        {t('phone') !== 'phone' && (
-          <>
-            <Text style={[styles.body, { color: colors.hourListText }]}>
-              {t('phone')}
-            </Text>
           </>
         )}
         {t('subTitle4') !== 'subTitle4' &&
