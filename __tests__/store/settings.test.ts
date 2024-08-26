@@ -54,6 +54,32 @@ describe('settings reducer', () => {
     ).toEqual({
       theme: 'light',
       clockType: undefined,
+      units: {
+        precipitation: {
+          unit: 'millimeter',
+          unitAbb: 'mm',
+          unitId: 1,
+          unitPrecision: 1,
+        },
+        pressure: {
+          unit: 'hehtopascal',
+          unitAbb: 'hPa',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+        temperature: {
+          unit: 'celsius',
+          unitAbb: 'C',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+        wind: {
+          unit: 'meters per second',
+          unitAbb: 'm/s',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+      },
     });
   });
 
@@ -63,6 +89,32 @@ describe('settings reducer', () => {
     ).toEqual({
       theme: undefined,
       clockType: 24,
+      units: {
+        precipitation: {
+          unit: 'millimeter',
+          unitAbb: 'mm',
+          unitId: 1,
+          unitPrecision: 1,
+        },
+        pressure: {
+          unit: 'hehtopascal',
+          unitAbb: 'hPa',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+        temperature: {
+          unit: 'celsius',
+          unitAbb: 'C',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+        wind: {
+          unit: 'meters per second',
+          unitAbb: 'm/s',
+          unitId: 1,
+          unitPrecision: 0,
+        },
+      },
     });
   });
 });
