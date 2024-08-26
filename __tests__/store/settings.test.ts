@@ -52,7 +52,6 @@ describe('settings reducer', () => {
     expect(
       reducer(undefined, { type: types.UPDATE_THEME, theme: 'light' })
     ).toEqual({
-      units: undefined,
       theme: 'light',
       clockType: undefined,
     });
@@ -62,7 +61,6 @@ describe('settings reducer', () => {
     expect(
       reducer(undefined, { type: types.UPDATE_CLOCK_TYPE, clockType: 24 })
     ).toEqual({
-      units: undefined,
       theme: undefined,
       clockType: 24,
     });
