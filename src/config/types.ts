@@ -48,6 +48,7 @@ export interface MapLayer {
   sources: WMSSource[] | TimeseriesSource[];
   times: Times;
   tileSize?: number;
+  tileFormat?: string;
 }
 
 interface Observation {
@@ -217,6 +218,7 @@ export interface ConfigType {
       wind: 'm/s' | 'km/h' | 'mph' | 'bft' | 'kn';
       pressure: 'hPa' | 'inHg' | 'mmHg' | 'mbar';
     };
+    showUnitSettings?: boolean;
     clockType: 12 | 24;
     themes: Themes;
   };
