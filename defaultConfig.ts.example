@@ -44,6 +44,10 @@ const defaultConfig: ConfigType = {
           observation: 8,
         },
         tileFormat: 'png',
+        tileSize: {
+          android: 256,
+          ios: 1024,
+        },
       },
     ],
   },
@@ -127,7 +131,7 @@ const defaultConfig: ConfigType = {
     },
   ],
   onboardingWizard: {
-    enabled: false,
+    enabled: true,
   },
   feedback: {
     enabled: true,
