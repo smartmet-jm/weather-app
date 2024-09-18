@@ -43,7 +43,11 @@ const defaultConfig: ConfigType = {
           timeStep: 15,
           observation: 8,
         },
-        tileFormat: 'webp',
+        tileFormat: 'png',
+        tileSize: {
+          android: 256,
+          ios: 1024,
+        },
       },
     ],
   },
@@ -127,15 +131,13 @@ const defaultConfig: ConfigType = {
     },
   ],
   onboardingWizard: {
-    enabled: false,
+    enabled: true,
   },
   feedback: {
     enabled: true,
-    email: 'mobiili@fmi.fi',
+    email: 'metservicejamaica@gmail.com',
     subject: {
-      fi: 'Ilmatieteen laitoksen sää palaute',
-      sv: 'FMI väder respons',
-      en: 'FMI Weather feedback',
+      en: 'Weather App feedback',
     },
   },
 };
