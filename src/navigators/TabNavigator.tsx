@@ -51,7 +51,6 @@ import { setCurrentLocation as setCurrentLocationAction } from '@store/location/
 import { fetchAnnouncements as fetchAnnouncementsAction } from '@store/announcements/actions';
 import { getGeolocation } from '@utils/helpers';
 import {
-  PRIMARY_BLUE,
   WHITE,
   HEADER_DARK,
   GRAY_1,
@@ -204,7 +203,9 @@ const Navigator: React.FC<Props> = ({
 
   const CommonHeaderOptions: StackNavigationOptions = {
     headerBackTestID: 'header-back',
-    headerTintColor: useDarkTheme ? WHITE : PRIMARY_BLUE,
+    headerTintColor: useDarkTheme
+      ? darkTheme.colors.headerTintColor
+      : lightTheme.colors.headerTintColor,
     headerTitleStyle: {
       fontFamily: 'Roboto-Bold',
     },
