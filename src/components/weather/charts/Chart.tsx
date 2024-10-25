@@ -202,6 +202,14 @@ const Chart: React.FC<ChartProps> = ({
     [chartType, data, chartDomain, tickValues, precipitationUnit]
   );
 
+  const secondaryParameterMissing = useMemo(
+    () =>
+      chartType === 'precipitation'
+        ? chartValues.pop.every((p) => p.y === null)
+        : false,
+    [chartType, chartValues.pop]
+  );
+
   const onMomentumScrollEnd = ({ nativeEvent }: any) => {
     const { contentOffset } = nativeEvent;
     setScrollIndex(contentOffset.x);
@@ -227,6 +235,7 @@ const Chart: React.FC<ChartProps> = ({
 
   return (
     <View
+      testID={`chart_${chartType}`}
       accessible
       accessibilityLabel={
         observation
@@ -279,12 +288,14 @@ const Chart: React.FC<ChartProps> = ({
           observation={observation ?? false}
           right
           units={units}
+          secondaryParameterMissing={secondaryParameterMissing}
         />
       </View>
       <ChartLegend
         chartType={chartType}
         observation={observation}
         units={units}
+        secondaryParameterMissing={secondaryParameterMissing}
       />
     </View>
   );

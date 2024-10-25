@@ -99,6 +99,7 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
     'km/h': ['1-11', '12-25', '26-47', '48-72', '73-115', '> 115'],
     mph: ['1-7', '8-16', '17-29', '30-45', '46-72', '> 72'],
     bft: ['1-4', '5-9', '10-17', '18-25', '26-41', '> 41'],
+    kn: ['1-6', '7-14', '15-26', '27-39', '40-62', '> 62'],
   } as { [key: string]: string[] };
 
   const temperatureUnit =
@@ -109,10 +110,11 @@ const WeatherInfoBottomSheet: React.FC<WeatherInfoBottomSheetProps> = ({
   const pressureUnit = units?.pressure.unitAbb ?? defaultUnits.pressure;
 
   return (
-    <View style={styles.wrapper}>
+    <View testID="weather_info_bottom_sheet" style={styles.wrapper}>
       <View style={styles.sheetListContainer}>
         <View style={styles.closeButtonContainer}>
           <CloseButton
+            testID="weather_info_bottom_sheet_close_button"
             onPress={onClose}
             accessibilityLabel={t(
               'weatherInfoBottomSheet.closeAccessibilityLabel'

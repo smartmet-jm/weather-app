@@ -81,8 +81,9 @@ const WarningsScreen: React.FC<WarningsScreenProps> = ({
   }, [location, updateWarnings]);
 
   return (
-    <View style={styles.safeArea}>
+    <View testID="warnings_view" style={styles.safeArea}>
       <ScrollView
+        testID="warnings_scrollview"
         style={[styles.container, { backgroundColor: colors.screenBackground }]}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={announcements && [0]}>
@@ -92,7 +93,9 @@ const WarningsScreen: React.FC<WarningsScreenProps> = ({
         ) : (
           <>
             <WarningsPanel />
-            <WarningsWebViewPanel />
+            <WarningsWebViewPanel
+              updateInterval={(warningsConfig.updateInterval ?? 5) * 60 * 1000}
+            />
           </>
         )}
       </ScrollView>

@@ -26,11 +26,12 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>271</string>
+	<string>267</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-	    <string>fb</string>
+		<string>fb</string>
 		<string>twitter</string>
 		<string>instagram</string>
 		<string>youtube</string>
