@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
+  AppState,
+  Appearance,
   Platform,
+  AppStateStatus,
   StyleSheet,
   StatusBar,
   StyleProp,
@@ -20,6 +23,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 
 import { useTranslation } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
+import { LaunchArguments } from 'react-native-launch-arguments';
 
 import OthersScreen from '@screens/OthersScreen';
 import MapScreen from '@screens/MapScreen';
@@ -49,6 +53,7 @@ import { getGeolocation } from '@utils/helpers';
 import {
   PRIMARY_BLUE,
   WHITE,
+  HEADER_DARK,
   GRAY_1,
   TRANSPARENT,
   SHADOW_DARK,
@@ -68,12 +73,13 @@ import TermsAndConditionsScreen from '@screens/TermsAndConditionsScreen';
 import ErrorComponent from '@components/common/ErrorComponent';
 
 import { Config } from '@config';
-import { lightTheme } from './themes';
+import { lightTheme, darkTheme } from './themes';
 import {
   TabParamList,
   OthersStackParamList,
   MapStackParamList,
   WeatherStackParamList,
+  LaunchArgs,
 } from './types';
 import WarningsTabIcon from './WarningsTabIcon';
 
@@ -116,10 +122,18 @@ const Navigator: React.FC<Props> = ({
     useSuspense: false,
   });
   const searchInfoSheetRef = useRef() as React.MutableRefObject<RBSheet>;
+  const isDark = (currentTheme: string | undefined): boolean =>
+    currentTheme === 'dark' ||
+    ((!currentTheme || currentTheme === 'automatic') &&
+      Appearance.getColorScheme() === 'dark');
+
   const warningsEnabled = Config.get('warnings').enabled;
   const onboardingWizardEnabled = Config.get('onboardingWizard').enabled;
+  const [useDarkTheme, setUseDarkTheme] = useState<boolean>(isDark(theme));
   const [didChangeLanguage, setDidChangeLanguage] = useState<boolean>(false);
   const [warningsSeverity, setWarningsSeverity] = useState<number>(0);
+
+  const launchArgs = LaunchArguments.value<LaunchArgs>();
 
   const handleLanguageChanged = useCallback(() => {
     setDidChangeLanguage(true);
@@ -153,12 +167,29 @@ const Navigator: React.FC<Props> = ({
     fetchAnnouncements,
   ]);
 
+  const handleAppStateChange = (state: AppStateStatus) => {
+    if (state === 'active') {
+      setUseDarkTheme(isDark(theme));
+    }
+  };
+
   const navigationTabChanged = (state: NavigationState | undefined) => {
     const navigationTab = state?.routeNames[state?.index] as NavigationTab;
     if (Number.isInteger(NavigationTabValues[navigationTab])) {
       setNavigationTab(navigationTab);
     }
   };
+
+  useEffect(() => {
+    setUseDarkTheme(isDark(theme));
+    const appStateSubscriber = AppState.addEventListener(
+      'change',
+      handleAppStateChange
+    );
+    return () => appStateSubscriber.remove();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme]);
 
   const HeaderBackImage = ({ tintColor }: { tintColor: string }) => (
     <View style={styles.headerBackImage}>
@@ -172,17 +203,20 @@ const Navigator: React.FC<Props> = ({
   );
 
   const CommonHeaderOptions: StackNavigationOptions = {
-    headerTintColor: PRIMARY_BLUE,
+    headerBackTestID: 'header-back',
+    headerTintColor: useDarkTheme ? WHITE : PRIMARY_BLUE,
     headerTitleStyle: {
       fontFamily: 'Roboto-Bold',
-      color: WHITE,
     },
     headerStyle: {
       ...styles.header,
-      shadowColor: Platform.OS === 'android' ? SHADOW_DARK : SHADOW_LIGHT,
+      shadowColor:
+        useDarkTheme || Platform.OS === 'android' ? SHADOW_DARK : SHADOW_LIGHT,
     },
     headerTitleAlign: 'center',
-    headerBackImage: () => <HeaderBackImage tintColor={WHITE} />,
+    headerBackImage: ({ tintColor }: { tintColor: string }) => (
+      <HeaderBackImage tintColor={tintColor} />
+    ),
     headerBackTitleVisible: false,
     headerBackAccessibilityLabel: t('navigation:backAccessibilityLabel'),
   };
@@ -207,6 +241,7 @@ const Navigator: React.FC<Props> = ({
     ),
     headerRight: () => (
       <HeaderButton
+        testID="search_header_button"
         title={t('navigation:search')}
         accessibilityLabel={t('navigation:search')}
         accessibilityHint={t('navigation:searchAccessibilityLabel')}
@@ -223,6 +258,7 @@ const Navigator: React.FC<Props> = ({
     headerTitle: t('navigation:search'),
     headerRight: () => (
       <HeaderButton
+        testID="search_header_info_button"
         accessibilityLabel="info"
         accessibilityHint={t('navigation:searchInfoAccessibilityHint')}
         icon="info"
@@ -387,9 +423,9 @@ const Navigator: React.FC<Props> = ({
     return null;
   }
 
-  if (!didLaunchApp && onboardingWizardEnabled) {
+  if (!didLaunchApp && onboardingWizardEnabled && launchArgs?.e2e !== true) {
     return (
-      <NavigationContainer theme={lightTheme}>
+      <NavigationContainer theme={useDarkTheme ? darkTheme : lightTheme}>
         <SetupStackScreen />
       </NavigationContainer>
     );
@@ -397,19 +433,28 @@ const Navigator: React.FC<Props> = ({
 
   return (
     <>
-      <StatusBar backgroundColor={HEADER_BLUE} barStyle="dark-content" />
+      <StatusBar
+        backgroundColor={useDarkTheme ? HEADER_DARK : WHITE}
+        barStyle={useDarkTheme ? 'light-content' : 'dark-content'}
+      />
       <NavigationContainer
         onStateChange={navigationTabChanged}
-        theme={lightTheme}>
+        theme={useDarkTheme ? darkTheme : lightTheme}>
         <Tab.Navigator
           initialRouteName={initialTab}
           screenOptions={{
             tabBarHideOnKeyboard: true,
-            tabBarActiveTintColor: lightTheme.colors.tabBarActive,
-            tabBarInactiveTintColor: lightTheme.colors.tabBarInactive,
+            tabBarActiveTintColor: useDarkTheme
+              ? darkTheme.colors.tabBarActive
+              : lightTheme.colors.tabBarActive,
+            tabBarInactiveTintColor: useDarkTheme
+              ? darkTheme.colors.tabBarInactive
+              : lightTheme.colors.tabBarInactive,
             tabBarLabelStyle: styles.tabText,
             tabBarButton: ({ style, accessibilityState, ...rest }) => {
-              const activeColor = lightTheme.colors.tabBarActive;
+              const activeColor = useDarkTheme
+                ? darkTheme.colors.tabBarActive
+                : lightTheme.colors.tabBarActive;
 
               return (
                 <AccessibleTouchableOpacity
@@ -518,7 +563,9 @@ const Navigator: React.FC<Props> = ({
           customStyles={{
             container: {
               ...styles.sheetContainer,
-              backgroundColor: WHITE,
+              backgroundColor: useDarkTheme
+                ? darkTheme.colors.headerBackground
+                : lightTheme.colors.headerBackground,
             },
             draggableIcon: styles.draggableIcon,
           }}>

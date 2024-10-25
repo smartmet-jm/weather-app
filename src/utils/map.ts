@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import moment from 'moment';
 import { parse } from 'fast-xml-parser';
 
@@ -119,9 +120,11 @@ const getTimeseriesData = async (
   const [layer] = overlay.sources as TimeseriesSource[];
   const { language } = i18n;
 
+  const now = moment().unix();
+
   const params = {
     timeStep: overlay.times.timeStep,
-    starttime: moment().unix(),
+    starttime: now - (now % 3600) + 3600, // round to next hour
     timeSteps: overlay.times.forecast,
     param: [
       'lonlat',
@@ -287,7 +290,10 @@ const getWMSLayerUrlsAndBounds = async (
           styles,
         },
         step: layer.times.timeStep,
-        tileSize: layer.tileSize,
+        tileSize:
+          typeof layer.tileSize === 'object'
+            ? layer.tileSize[Platform.OS]
+            : layer.tileSize,
       });
     });
 

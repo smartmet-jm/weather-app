@@ -59,7 +59,9 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type ForecastPanelProps = PropsFromRedux;
+type ForecastPanelProps = PropsFromRedux & {
+  currentHour: number;
+};
 
 const ForecastPanel: React.FC<ForecastPanelProps> = ({
   clockType,
@@ -72,6 +74,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
   timezone,
   displayFormat,
   updateDisplayFormat,
+  currentHour, // just for re-rendering every hour
 }) => {
   const { colors } = useTheme() as CustomTheme;
   const { t, i18n } = useTranslation('forecast');
@@ -132,6 +135,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
         <View style={[styles.row]}>
           <View style={[styles.row, styles.justifyStart]}>
             <AccessibleTouchableOpacity
+              testID="forecast_table_button"
               accessibilityRole="button"
               accessibilityHint={`${t('tableAccessibilityHint')}. ${
                 displayFormat === TABLE ? t('active') : t('notActive')
@@ -169,6 +173,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
               </View>
             </AccessibleTouchableOpacity>
             <AccessibleTouchableOpacity
+              testID="forecast_chart_button"
               accessibilityRole="button"
               accessibilityHint={`${t('chartAccessibilityHint')}. ${
                 displayFormat === CHART ? t('active') : t('notActive')
@@ -210,6 +215,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
               style={[styles.separator, { backgroundColor: colors.border }]}
             />
             <AccessibleTouchableOpacity
+              testID="params_button"
               accessibilityRole="button"
               accessibilityLabel={t('paramsAccessibilityLabel')}
               accessibilityHint={t('paramsBottomSheet.subTitle')}
@@ -228,6 +234,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
               />
             </AccessibleTouchableOpacity>
             <AccessibleTouchableOpacity
+              testID="info_button"
               accessibilityRole="button"
               accessibilityLabel={t('infoAccessibilityLabel')}
               accessibilityHint={t('infoAccessibilityHint')}
@@ -268,6 +275,7 @@ const ForecastPanel: React.FC<ForecastPanelProps> = ({
             activeDayIndex={activeDayIndex}
             setActiveDayIndex={(i) => setActiveDayIndex(i)}
             currentDayOffset={sections[0].data.length}
+            currentHour={currentHour}
           />
         )}
         {sections &&

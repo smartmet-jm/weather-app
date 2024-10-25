@@ -39,7 +39,7 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.container}>
+        <View testID="others_view" style={styles.container}>
           <View>
             <View
               style={[
@@ -88,6 +88,7 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               <AccessibleTouchableOpacity
                 delayPressIn={100}
                 onPress={() => navigation.navigate('About')}
+                testID="navigation_about"
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t('general')}`}>
                 <View style={styles.row}>
@@ -113,6 +114,7 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               <AccessibleTouchableOpacity
                 delayPressIn={100}
                 onPress={() => navigation.navigate('TermsAndConditions')}
+                testID="navigation_terms_and_conditions"
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t(
                   'termsAndConditions'
@@ -167,6 +169,7 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
               <AccessibleTouchableOpacity
                 delayPressIn={100}
                 onPress={() => navigation.navigate('Accessibility')}
+                testID="navigation_accessibility"
                 accessibilityRole="menuitem"
                 accessibilityHint={`${t('navigateTo')} ${t('accessibility')}`}>
                 <View style={styles.row}>
@@ -193,6 +196,7 @@ const OthersScreen: React.FC<Props> = ({ navigation }) => {
                 <AccessibleTouchableOpacity
                   delayPressIn={100}
                   onPress={() => navigation.navigate('GiveFeedback')}
+                  testID="navigation_feedback"
                   accessibilityRole="menuitem"
                   accessibilityHint={`${t('navigateTo')} ${t('feedback')}`}>
                   <View style={styles.row}>

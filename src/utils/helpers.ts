@@ -1,5 +1,5 @@
 import { Alert, AccessibilityInfo, Platform } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 import {
   PERMISSIONS,
   checkMultiple,
@@ -28,7 +28,10 @@ const getPosition = (
 ) =>
   Geolocation.getCurrentPosition(
     (position) => {
-      const { latitude, longitude } = position.coords;
+      let { latitude, longitude } = position.coords;
+      latitude = roundCoordinates(latitude);
+      longitude = roundCoordinates(longitude);
+
       getCurrentPosition(latitude, longitude)
         .then((json) => {
           const geoid = Number(Object.keys(json)[0]);
@@ -83,6 +86,12 @@ export const getGeolocation = async (
   t: TFunction<string[] | string>,
   failSilently?: boolean
 ) => {
+  Geolocation.setRNConfiguration({
+    skipPermissionRequests: true, // Let react-native-permissions handle this
+    enableBackgroundLocationUpdates: false,
+    locationProvider: 'playServices',
+  });
+
   const permissions =
     Platform.OS === 'ios'
       ? [PERMISSIONS.IOS.LOCATION_WHEN_IN_USE]
@@ -341,29 +350,16 @@ export const getFeelsLikeIconName = (
 export const isOdd = (num: number) => !!(num % 2);
 
 /** Returns the index of 15:00 or nearest */
-export const getIndexForDaySmartSymbol = (
-  dayArray: TimeStepData[],
-  dayIndex: number
-): number => {
+export const getIndexForDaySmartSymbol = (dayArray: TimeStepData[]): number => {
   if (dayArray.length === 24) {
-    return 14; // choose 14:00 (2.00 PM) local time as the default time
+    return 15; // choose 15:00 (3.00 PM) local time as the default time
   }
-  if (dayArray.length >= 10) {
-    return 14 - (24 - dayArray.length); // choose index of 14:00 if available from a list with fewer than 24 hourly forecasts
+  if (dayArray.length >= 9) {
+    return 15 - (24 - dayArray.length); // choose index of 15:00 if available from a list with fewer than 24 hourly forecasts
   }
-  const index = dayArray.findIndex((d) => {
-    const dateObj = new Date(d.epochtime * 1000);
-    const hours = dateObj.getHours();
-    return hours === 14;
-  });
 
-  if (dayIndex === 0 && index < 0) {
-    return 0;
-  }
-  if (index < 0) {
-    return dayArray.length - 1;
-  }
-  return index;
+  // Return first timestamp of day if no 15:00 available (current local time > 15:00)
+  return 0;
 };
 
 const severities: Severity[] = ['Minor', 'Moderate', 'Severe', 'Extreme'];
@@ -439,4 +435,15 @@ export const getSeveritiesForDays = (
     dailySeverities.push(daySeverities);
   });
   return dailySeverities;
+};
+
+// Rounds coordinates to maximum 4 decimal places
+export const roundCoordinates = (value: number): number => {
+  const stringValue = value.toString();
+  const items = stringValue.split('.');
+
+  // Return original value if maximum 4 decimal places
+  if (items.length === 2 && items[1].length <= 4) return value;
+
+  return +(Math.round(parseFloat(value + 'e+4')) + 'e-4');
 };

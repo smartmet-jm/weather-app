@@ -1,40 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { WebView } from 'react-native-webview';
-import { useIsFocused, useTheme } from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import { Config } from '@config';
-import { useReloader } from '@utils/reloader';
 import PanelHeader from '@components/weather/common/PanelHeader';
 import { CustomTheme } from '@utils/colors';
 
-const WarningsWebViewPanel: React.FC = () => {
-  const { shouldReload } = useReloader();
-  const [updated, setUpdated] = useState<number>(Date.now());
+type WarningsWebViewPanelProps = {
+  updateInterval: number;
+};
+
+const WarningsWebViewPanel: React.FC<WarningsWebViewPanelProps> = (
+  updateInterval
+) => {
   const [viewHeight, setViewHeight] = useState<number>(2000);
   const { dark } = useTheme() as CustomTheme;
   const webViewRef = useRef(null);
-  const isFocused = useIsFocused();
   const { i18n, t } = useTranslation('warnings');
   const locale = ['en', 'fi', 'sv'].includes(i18n.language)
     ? i18n.language
     : 'en';
 
-  const { webViewUrl, updateInterval } = Config.get('warnings');
-
-  useEffect(() => {
-    const now = Date.now();
-    const timeToUpdate = updated + (updateInterval ?? 5) * 60 * 1000;
-    if (isFocused && (now > timeToUpdate || shouldReload > timeToUpdate)) {
-      const script = `
-      document.getElementById('fmi-warnings').__vue__.update();
-      true;
-      `;
-      // @ts-ignore
-      webViewRef?.current?.injectJavaScript(script);
-      setUpdated(now);
-    }
-  }, [isFocused, updated, shouldReload, updateInterval]);
+  const { webViewUrl } = Config.get('warnings');
 
   if (!webViewUrl) {
     return null;
@@ -54,7 +42,7 @@ const WarningsWebViewPanel: React.FC = () => {
       <smartmet-alert-client language="${locale}" theme="${
     dark ? 'dark' : 'light'
   }" gray-scale-selector="true"></smartmet-alert-client>
-      <script type="module" src="${webViewUrl}/index.js"></script>
+      <script type="module" src="${webViewUrl}/index.js" refresh-interval="${updateInterval}"></script>
       <script>
         const resizeObserver = new ResizeObserver(entries => window.ReactNativeWebView.postMessage(entries[0].target.clientHeight));
         resizeObserver.observe(document.body);
@@ -66,6 +54,7 @@ const WarningsWebViewPanel: React.FC = () => {
     <View>
       <PanelHeader title={`${t('allWarnings')}`} justifyCenter />
       <WebView
+        testID="warnings_webview"
         ref={webViewRef}
         style={{ height: viewHeight, backgroundColor: `transparent` }}
         source={{ html }}

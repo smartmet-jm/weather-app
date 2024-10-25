@@ -13,6 +13,7 @@ type HeaderButtonProps = {
   accessibilityHint: string;
   icon: string;
   right?: boolean;
+  testID?: string;
 };
 
 const HeaderButton: React.FC<HeaderButtonProps> = ({
@@ -22,10 +23,12 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
   title,
   onPress,
   right,
+  testID,
 }) => {
   const isLandscape = useOrientation();
   return (
     <AccessibleTouchableOpacity
+      testID={testID || undefined}
       onPress={onPress}
       accessible
       accessibilityRole="button"
